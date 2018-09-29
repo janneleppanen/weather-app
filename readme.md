@@ -17,5 +17,6 @@ Run application `yarn start`
 # Stack
 
 [React &rarr;](https://reactjs.org/)  
-[Redux &rarr;](https://redux.js.org/introduction)  
+[Redux &rarr;](https://redux.js.org/introduction)
+[Redux-Saga &rarr;](https://redux-saga.js.org/)
 [Styled Compoennts &rarr;](https://www.styled-components.com/docs/api#typescript)

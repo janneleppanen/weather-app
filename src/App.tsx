@@ -1,7 +1,17 @@
 import * as React from "react";
-import { getWeather } from "./services/openWeatherMap";
 import { Background, Container } from "./common";
 import { kelvinToCelcius } from "./utils/temperature";
+import { connect } from "react-redux";
+import { getForecast } from "./redux/ForecastReducer";
+
+interface Props {
+  forecast: {
+    test: string;
+    loading: boolean;
+    weather: any;
+  };
+  getForecast: any;
+}
 
 interface State {
   weather: Weather | null;
@@ -9,7 +19,7 @@ interface State {
   location: string;
 }
 
-class App extends React.Component<{}, State> {
+class App extends React.Component<Props, State> {
   state = {
     loading: true,
     weather: null,
@@ -17,20 +27,16 @@ class App extends React.Component<{}, State> {
   };
 
   componentDidMount() {
-    this.updateWeather();
+    this.props.getForecast();
   }
 
   updateWeather = async () => {
-    const weather = await getWeather(this.state.location);
-    if (weather.cod !== "200") {
-      this.setState({ weather: null, loading: false });
-      return;
-    }
-    this.setState({ weather, loading: false });
+    this.props.getForecast(this.state.location);
   };
 
   public render() {
-    const { weather, location } = this.state;
+    const { location } = this.state;
+    const { weather, loading } = this.props.forecast;
 
     return (
       <Background>
@@ -40,17 +46,35 @@ class App extends React.Component<{}, State> {
             onChange={e => this.setState({ location: e.target.value })}
             onBlur={() => this.updateWeather()}
           />
-          {weather !== null && (
-            <p>
-              <strong>{weather.city.name}</strong>
-              <br />
-              {kelvinToCelcius(weather.list[0].main.temp).toFixed(0)} °C
-            </p>
-          )}
+
+          <p>{loading ? "Loading..." : ""}</p>
+
+          <p>
+            {weather !== null && weather.cod !== "200" ? weather.message : ""}
+          </p>
+
+          {weather !== null &&
+            weather.cod === "200" &&
+            !loading && (
+              <p>
+                <strong>{weather.city.name}</strong>
+                <br />
+                {kelvinToCelcius(weather.list[0].main.temp).toFixed(0)} °C
+              </p>
+            )}
         </Container>
       </Background>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    forecast: state.forecast
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getForecast }
+)(App);
