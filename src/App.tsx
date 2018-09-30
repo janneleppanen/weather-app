@@ -1,8 +1,10 @@
 import * as React from "react";
-import { Background, Container } from "./common";
+
+import { Background, Container, HorizontalScrollList } from "./common";
+import Forecast from "./components/Forecast";
 import { kelvinToCelcius } from "./utils/temperature";
 import { connect } from "react-redux";
-import { getForecast } from "./redux/ForecastReducer";
+import { getForecastRequest } from "./redux/ForecastReducer";
 
 interface Props {
   forecast: {
@@ -10,7 +12,7 @@ interface Props {
     loading: boolean;
     weather: any;
   };
-  getForecast: any;
+  getForecastRequest: any;
 }
 
 interface State {
@@ -23,15 +25,15 @@ class App extends React.Component<Props, State> {
   state = {
     loading: true,
     weather: null,
-    location: ""
+    location: "helsinki"
   };
 
   componentDidMount() {
-    this.props.getForecast();
+    this.props.getForecastRequest(this.state.location);
   }
 
   updateWeather = async () => {
-    this.props.getForecast(this.state.location);
+    this.props.getForecastRequest(this.state.location);
   };
 
   public render() {
@@ -50,17 +52,32 @@ class App extends React.Component<Props, State> {
           <p>{loading ? "Loading..." : ""}</p>
 
           <p>
-            {weather !== null && weather.cod !== "200" ? weather.message : ""}
+            {weather !== null && weather.cod !== "200" && !loading
+              ? weather.message
+              : ""}
           </p>
 
           {weather !== null &&
             weather.cod === "200" &&
             !loading && (
-              <p>
-                <strong>{weather.city.name}</strong>
-                <br />
-                {kelvinToCelcius(weather.list[0].main.temp).toFixed(0)} °C
-              </p>
+              <div>
+                <p>
+                  <strong>{weather.city.name}</strong>
+                  <br />
+                  {kelvinToCelcius(weather.list[0].main.temp).toFixed(0)} °C
+                </p>
+                <HorizontalScrollList>
+                  {weather.list.map(stats => (
+                    <Forecast
+                      key={stats.dt}
+                      date={stats.dt * 1000}
+                      temperature={stats.main.temp}
+                      temperatureMin={stats.main.temp_min}
+                      temperatureMax={stats.main.temp_max}
+                    />
+                  ))}
+                </HorizontalScrollList>
+              </div>
             )}
         </Container>
       </Background>
@@ -76,5 +93,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getForecast }
+  { getForecastRequest }
 )(App);

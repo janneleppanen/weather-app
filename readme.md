@@ -16,7 +16,8 @@ Run application `yarn start`
 
 # Stack
 
-[React &rarr;](https://reactjs.org/)  
+[React &rarr;](https://reactjs.org)  
 [Redux &rarr;](https://redux.js.org/introduction)
-[Redux-Saga &rarr;](https://redux-saga.js.org/)
-[Styled Compoennts &rarr;](https://www.styled-components.com/docs/api#typescript)
+[Redux-Saga &rarr;](https://redux-saga.js.org)
+[Styled Compoennts &rarr;](https://www.styled-components.com)
+[Date-fns &rarr;](https://date-fns.org)
