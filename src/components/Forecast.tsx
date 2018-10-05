@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled from "styled-components";
-import { format } from "date-fns";
 
 import { displayCelciusFromKelvin } from "../utils/temperature";
 
@@ -8,7 +7,7 @@ interface Props {
   temperature: number;
   temperatureMin: number;
   temperatureMax: number;
-  date: number;
+  date: string;
 }
 
 const Wrapper = styled.div`
@@ -20,10 +19,12 @@ const Wrapper = styled.div`
 const Date = styled.p`
   margin: 0;
   font-size: 0.825rem;
+  opacity: 0.6;
 `;
 
 const Title = styled.p`
   font-weight: bold;
+  font-size: 1.25rem;
   margin: 0;
 `;
 
@@ -36,7 +37,7 @@ const Forecast = (props: Props) => {
   const { temperature, temperatureMin, temperatureMax, date } = props;
   return (
     <Wrapper>
-      <Date>{format(date, "Do MMM ha")}</Date>
+      <Date>{date}</Date>
       <Title>{displayCelciusFromKelvin(temperature)}</Title>
       <SecodaryText>
         {displayCelciusFromKelvin(temperatureMin)}

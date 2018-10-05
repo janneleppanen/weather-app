@@ -3,10 +3,12 @@ import { injectGlobal } from "styled-components";
 
 export const theme = {
   // Colors
-  main: "#FF6D3D",
-  secondary: "#2E4057",
+  main: "#f48230",
+  alt: "#bcb6ae",
+  dark: "#353c44",
+  light: "#FCFAF7",
   background: "white",
-  text: "#2E4057",
+  text: "#353c44",
 
   // Dimensions
   space: "1rem",
@@ -22,12 +24,17 @@ injectGlobal`
     font-family: 'Ubuntu', sans-serif;
     font-size: 100%;
     line-height: 1.5;
-    color: #2E4057;
+    color: #353c44;
   }
 
   html,
   body,
   #root {
     height: 100%;
+  }
+
+  a {
+    text-decoration: none;
+    color: #353c44
   }
 `;
