@@ -4,17 +4,14 @@ import _ from "lodash";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
-import { Container, HorizontalScrollList } from "./common";
+import MainForecastWrapper from "./components/MainForecastWrapper";
+import { Container, Input, Notice } from "./common";
 import Forecast from "./components/Forecast";
-import { kelvinToCelcius } from "./utils/temperature";
+import CurrentWeather from "./components/CurrentWeather";
+import ForecastDays from "./components/ForecastDays";
 import { connect } from "react-redux";
 import { getForecastRequest } from "./redux/ForecastReducer";
-import {
-  groupForecastsByDays,
-  getForecastAverage,
-  getForecastMax,
-  getForecastMin
-} from "./utils/forecast";
+import { getForecastMax } from "./utils/forecast";
 
 interface Props {
   forecast: {
@@ -55,6 +52,7 @@ class App extends React.Component<Props & RouteProps, State> {
   }
 
   updateWeather = async () => {
+    if (!this.state.location) return;
     this.props.history.push(`/locations/${this.state.location}`);
   };
 
@@ -64,21 +62,24 @@ class App extends React.Component<Props & RouteProps, State> {
 
     return (
       <div>
-        <Container textAlignCenter>
-          <input
+        <Container>
+          <Input
             value={location}
             onChange={e => this.setState({ location: e.target.value })}
             onBlur={() => this.updateWeather()}
             onKeyDown={e => e.key === "Enter" && this.updateWeather()}
+            placeholder="Enter your location"
           />
 
-          <p>{loading ? "Loading..." : ""}</p>
+          {loading && <Notice centerText>Loading...</Notice>}
 
-          <p>
-            {weather !== null && weather.cod !== "200" && !loading
-              ? weather.message
-              : ""}
-          </p>
+          {weather !== null &&
+            weather.cod !== "200" &&
+            !loading && (
+              <Notice centerText type="error">
+                {weather.message}
+              </Notice>
+            )}
 
           {weather !== null &&
             weather.cod === "200" &&
@@ -92,34 +93,26 @@ class App extends React.Component<Props & RouteProps, State> {
   renderWeather = () => {
     const { weather } = this.props.forecast;
     const { location } = this.state;
-    const grouped = groupForecastsByDays(weather.list);
 
     return (
-      <div>
-        <p>
-          {format(weather.list[0].dt, "dddd")}
-          <br />
-          {format(weather.list[0].dt, "Do MMMM")}
-          <br />
-          {weather.city.name}
-          <br />
-        </p>
-        <h2>{kelvinToCelcius(weather.list[0].main.temp).toFixed(0)} °C</h2>
-        <HorizontalScrollList>
-          {Object.keys(grouped).map(key => (
-            <React.Fragment key={key}>
-              <Link to={`/locations/${location}/${key}`}>
-                <Forecast
-                  date={format(key, "ddd")}
-                  temperature={getForecastAverage(grouped[key])}
-                  temperatureMin={getForecastMin(grouped[key])}
-                  temperatureMax={getForecastMax(grouped[key])}
-                />
-              </Link>
-            </React.Fragment>
-          ))}
-        </HorizontalScrollList>
-      </div>
+      <MainForecastWrapper>
+        <CurrentWeather
+          location={weather.city.name}
+          forecast={weather.list[0]}
+        />
+
+        <ForecastDays
+          forecasts={weather.list}
+          renderItem={(item, key) => (
+            <Link to={`/locations/${location}/${key}`}>
+              <Forecast
+                date={format(key, "ddd")}
+                temperature={getForecastMax(item)}
+              />
+            </Link>
+          )}
+        />
+      </MainForecastWrapper>
     );
   };
 }

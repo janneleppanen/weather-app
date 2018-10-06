@@ -3,5 +3,5 @@ export const kelvinToCelcius = (kelvin: number) => {
 };
 
 export const displayCelciusFromKelvin = (kelvin: number) => {
-  return kelvinToCelcius(kelvin).toFixed(0) + " °C";
+  return kelvinToCelcius(kelvin).toFixed(0) + "°";
 };

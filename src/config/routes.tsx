@@ -1,7 +1,8 @@
 import * as React from "react";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import App from "../App";
+import Header from "../components/Header";
 import { Background } from "../common";
 
 const SettingsPage = () => <div>Settings Page</div>;
@@ -11,19 +12,7 @@ const DateDetails = () => <div>Date Details Page</div>;
 const Routes = () => (
   <Router>
     <Background>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/locations">Locations</Link>
-          </li>
-          <li>
-            <Link to="/settings">Settings</Link>
-          </li>
-        </ul>
-      </div>
+      <Header />
 
       <Route exact path="/" component={App} />
       <Route exact path="/settings" component={SettingsPage} />

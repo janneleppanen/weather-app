@@ -13,4 +13,5 @@ interface Forecast {
     temp_min: number;
     temp_max: number;
   };
+  weather: any;
 }

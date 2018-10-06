@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface Props {
-  textAlignCenter: boolean;
+  textAlignCenter?: boolean;
 }
 
 const Container = styled.div<Props>`
