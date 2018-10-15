@@ -15,3 +15,5 @@ interface Forecast {
   };
   weather: any;
 }
+
+type Bookmarks = Array<string>;

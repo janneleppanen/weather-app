@@ -5,12 +5,14 @@ import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
 import MainForecastWrapper from "./components/MainForecastWrapper";
+import Bookmark from "./components/Bookmark";
 import { Container, Input, Notice } from "./common";
 import Forecast from "./components/Forecast";
 import CurrentWeather from "./components/CurrentWeather";
 import ForecastDays from "./components/ForecastDays";
 import { connect } from "react-redux";
 import { getForecastRequest } from "./redux/ForecastReducer";
+import { addBookmark, removeBookmark } from "./redux/BookmarkReducer";
 import { getForecastMax } from "./utils/forecast";
 
 interface Props {
@@ -51,42 +53,48 @@ class App extends React.Component<Props & RouteProps, State> {
     }
   }
 
-  updateWeather = async () => {
+  updateForecast = async () => {
     if (!this.state.location) return;
     this.props.history.push(`/locations/${this.state.location}`);
   };
 
   public render() {
+    const { addBookmark, removeBookmark, bookmarks } = this.props;
     const { weather, loading } = this.props.forecast;
     const { location } = this.state;
 
     return (
-      <div>
-        <Container>
-          <Input
-            value={location}
-            onChange={e => this.setState({ location: e.target.value })}
-            onBlur={() => this.updateWeather()}
-            onKeyDown={e => e.key === "Enter" && this.updateWeather()}
-            placeholder="Enter your location"
-          />
+      <Container>
+        <Input
+          value={location}
+          onChange={e => this.setState({ location: e.target.value })}
+          onBlur={() => this.updateForecast()}
+          onKeyDown={e => e.key === "Enter" && this.updateForecast()}
+          placeholder="Enter your location"
+        />
 
-          {loading && <Notice centerText>Loading...</Notice>}
+        {loading && <Notice centerText>Loading...</Notice>}
 
-          {weather !== null &&
-            weather.cod !== "200" &&
-            !loading && (
-              <Notice centerText type="error">
-                {weather.message}
-              </Notice>
-            )}
+        <Bookmark
+          location={location}
+          checked={bookmarks.includes(location)}
+          onSelect={() => addBookmark(location)}
+          onUnselect={() => removeBookmark(location)}
+        />
 
-          {weather !== null &&
-            weather.cod === "200" &&
-            !loading &&
-            this.renderWeather()}
-        </Container>
-      </div>
+        {weather !== null &&
+          weather.cod !== "200" &&
+          !loading && (
+            <Notice centerText type="error">
+              {weather.message}
+            </Notice>
+          )}
+
+        {weather !== null &&
+          weather.cod === "200" &&
+          !loading &&
+          this.renderWeather()}
+      </Container>
     );
   }
 
@@ -117,13 +125,9 @@ class App extends React.Component<Props & RouteProps, State> {
   };
 }
 
-const mapStateToProps = state => {
-  return {
-    forecast: state.forecast
-  };
-};
+const mapStateToProps = ({ forecast, bookmarks }) => ({ forecast, bookmarks });
 
 export default connect(
   mapStateToProps,
-  { getForecastRequest }
+  { getForecastRequest, addBookmark, removeBookmark }
 )(App);

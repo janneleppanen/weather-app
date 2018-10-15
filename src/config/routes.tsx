@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import App from "../App";
 import Header from "../components/Header";
 import { Background } from "../common";
+import LocationsPage from "../containers/LocationsPage";
 
 const SettingsPage = () => <div>Settings Page</div>;
-const LocationsPage = () => <div>Locations Page</div>;
 const DateDetails = () => <div>Date Details Page</div>;
 
 const Routes = () => (
