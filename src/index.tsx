@@ -4,7 +4,6 @@ import { ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
-// import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import { theme } from "./config/global-styles";
 import { store, persistor } from "./config/store";

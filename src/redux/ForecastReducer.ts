@@ -8,7 +8,7 @@ export const GET_FORECAST = {
 
 const STATE = {
   loading: false,
-  weather: null
+  weather: undefined
 };
 
 export const { getForecastRequest } = createActions({

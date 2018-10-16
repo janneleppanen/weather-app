@@ -1,12 +1,12 @@
 import * as React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import App from "../App";
+import App from "../containers/App";
 import Header from "../components/Header";
 import { Background } from "../common";
 import LocationsPage from "../containers/LocationsPage";
+import SettingsPage from "../containers/SettingsPage";
 
-const SettingsPage = () => <div>Settings Page</div>;
 const DateDetails = () => <div>Date Details Page</div>;
 
 const Routes = () => (

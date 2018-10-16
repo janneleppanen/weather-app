@@ -4,16 +4,16 @@ import _ from "lodash";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
-import MainForecastWrapper from "./components/MainForecastWrapper";
-import Bookmark from "./components/Bookmark";
-import { Container, Input, Notice } from "./common";
-import Forecast from "./components/Forecast";
-import CurrentWeather from "./components/CurrentWeather";
-import ForecastDays from "./components/ForecastDays";
+import MainForecastWrapper from "../components/MainForecastWrapper";
+import Bookmark from "../components/Bookmark";
+import { Container, Input, Notice } from "../common";
+import Forecast from "../components/Forecast";
+import CurrentWeather from "../components/CurrentWeather";
+import ForecastDays from "../components/ForecastDays";
 import { connect } from "react-redux";
-import { getForecastRequest } from "./redux/ForecastReducer";
-import { addBookmark, removeBookmark } from "./redux/BookmarkReducer";
-import { getForecastMax } from "./utils/forecast";
+import { getForecastRequest } from "../redux/ForecastReducer";
+import { addBookmark, removeBookmark } from "../redux/BookmarkReducer";
+import { getForecastMax } from "../utils/forecast";
 
 interface Props {
   forecast: {
@@ -82,7 +82,7 @@ class App extends React.Component<Props & RouteProps, State> {
           onUnselect={() => removeBookmark(location)}
         />
 
-        {weather !== null &&
+        {weather !== undefined &&
           weather.cod !== "200" &&
           !loading && (
             <Notice centerText type="error">
@@ -90,7 +90,7 @@ class App extends React.Component<Props & RouteProps, State> {
             </Notice>
           )}
 
-        {weather !== null &&
+        {weather !== undefined &&
           weather.cod === "200" &&
           !loading &&
           this.renderWeather()}
