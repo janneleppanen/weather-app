@@ -1,4 +1,4 @@
-declare interface GlobalState {
+interface GlobalState {
   forecast: Forecasts;
   bookmarks: Bookmarks;
   settings: Settings;
@@ -29,9 +29,9 @@ interface Forecasts {
 
 type Bookmarks = Array<string>;
 
-type TemperatureSetting = "celcius" | "farenheit";
-type LanguageSetting = "en" | "fi";
-type ThemeSetting = "light" | "dark";
+type TemperatureSetting = import("../config/constants").Temperatures;
+type LanguageSetting = import("../config/constants").Languages;
+type ThemeSetting = import("../config/constants").Themes;
 
 interface Settings {
   temperature: TemperatureSetting;

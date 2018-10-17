@@ -1,3 +1,12 @@
-export const Temperatures = { celcius: "Celcius", fahrenheit: "Fahrenheit" };
-export const Languages = { en: "en", fi: "fi" };
-export const Themes = { light: "Light", dark: "Dark" };
+export enum Temperatures {
+  celcius = "Celcius",
+  fahrenheit = "Fahrenheit"
+}
+export enum Languages {
+  en = "en",
+  fi = "fi"
+}
+export enum Themes {
+  light = "Light",
+  dark = "Dark"
+}
