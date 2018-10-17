@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "date-fns": "^1.29.0",
+    "immer": "^1.7.2",
     "lodash": "^4.17.11",
     "react": "^16.5.2",
     "react-app-rewired": "^1.6.2",

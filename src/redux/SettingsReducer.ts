@@ -1,5 +1,6 @@
-import { createActions, handleActions } from "redux-actions";
+import { createActions } from "redux-actions";
 
+import { handleActions } from "../utils/redux-helpers";
 import { Temperatures, Languages, Themes } from "../config/constants";
 
 export const SET_TEMPERATURE = "SET_TEMPERATURE";
@@ -22,14 +23,14 @@ export const { setTemperature, setLanguage, setTheme } = createActions({
 
 const reducer = handleActions(
   {
-    [SET_TEMPERATURE]: (state: State, { payload }) => {
-      return { ...state, temperature: payload };
+    [SET_TEMPERATURE]: (state: State, payload) => {
+      state.temperature = payload;
     },
-    [SET_LANGUAGE]: (state: State, { payload }) => {
-      return { ...state, language: payload };
+    [SET_LANGUAGE]: (state: State, payload) => {
+      state.language = payload;
     },
-    [SET_THEME]: (state: State, { payload }) => {
-      return { ...state, theme: payload };
+    [SET_THEME]: (state: State, payload) => {
+      state.theme = payload;
     }
   },
   STATE

@@ -1,4 +1,5 @@
-import { createActions, handleActions } from "redux-actions";
+import { createActions } from "redux-actions";
+import { handleActions } from "../utils/redux-helpers";
 
 export const ADD_BOOKMARK = "ADD_BOOKMARK";
 export const REMOVE_BOOKMARK = "REMOVE_BOOKMARK";
@@ -14,11 +15,11 @@ export const { addBookmark, removeBookmark } = createActions({
 
 const reducer = handleActions(
   {
-    [ADD_BOOKMARK]: (state: State, { payload }) => {
-      return [...state, payload];
+    [ADD_BOOKMARK]: (state: State, payload) => {
+      state.push(payload);
     },
-    [REMOVE_BOOKMARK]: (state: State, { payload }) => {
-      return state.filter(i => i !== payload);
+    [REMOVE_BOOKMARK]: (state: State, payload) => {
+      state.splice(state.findIndex(bookmark => bookmark === payload), 1);
     }
   },
   STATE

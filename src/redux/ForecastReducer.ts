@@ -1,4 +1,5 @@
-import { createActions, handleActions } from "redux-actions";
+import { createActions } from "redux-actions";
+import { handleActions } from "../utils/redux-helpers";
 
 export const GET_FORECAST = {
   REQUEST: "GET_FORECAST_REQUEST",
@@ -19,14 +20,15 @@ export const { getForecastRequest } = createActions({
 
 const reducer = handleActions(
   {
-    [GET_FORECAST.REQUEST]: (state, { payload }) => {
-      return { ...state, loading: true };
+    [GET_FORECAST.REQUEST]: (state, payload) => {
+      state.loading = true;
     },
-    [GET_FORECAST.ERROR]: (state, { payload }) => {
-      return { ...state, loading: false };
+    [GET_FORECAST.ERROR]: (state, payload) => {
+      state.loading = false;
     },
-    [GET_FORECAST.SUCCESS]: (state, { payload }) => {
-      return { ...state, loading: false, weather: payload };
+    [GET_FORECAST.SUCCESS]: (state, payload) => {
+      state.loading = false;
+      state.weather = payload;
     }
   },
   STATE
