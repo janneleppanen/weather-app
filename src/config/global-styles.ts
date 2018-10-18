@@ -1,7 +1,7 @@
 import styledNormalize from "styled-normalize";
-import { injectGlobal } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
-export const theme = {
+export const lightTheme = {
   // Colors
   main: "#ff6347",
   alt: "#bcb6ae",
@@ -17,7 +17,23 @@ export const theme = {
   maxWidth: "1000px"
 };
 
-injectGlobal`
+export const darkTheme = {
+  // Colors
+  main: "#ff6347",
+  alt: "#aaa",
+  dark: "#ddd",
+  medium: "#ddd",
+  light: "#ddd",
+  lighter: "#EFF3F4",
+  background: "#353c44",
+  text: "#fff",
+
+  // Dimensions
+  space: "1rem",
+  maxWidth: "1000px"
+};
+
+export const GlobalStyles = createGlobalStyle<any>`
   ${styledNormalize}
 
   @import url('https://fonts.googleapis.com/css?family=Ubuntu');
@@ -28,7 +44,7 @@ injectGlobal`
     font-family: 'Ubuntu', sans-serif;
     font-size: 100%;
     line-height: 1.5;
-    color: #353c44;
+    color: ${props => props.theme.text};
   }
 
   html,
@@ -39,6 +55,6 @@ injectGlobal`
 
   a {
     text-decoration: none;
-    color: #353c44
+    color: ${props => props.theme.text};
   }
 `;
