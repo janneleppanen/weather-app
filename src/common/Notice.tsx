@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface Props {
-  centerText: boolean;
+  centerText?: boolean;
   type?: "notice" | "error" | "warning";
 }
 
