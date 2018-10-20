@@ -1,0 +1,29 @@
+{
+  "common": {
+    "enterLocation": "Enter your location",
+    "remember": "Remember this"
+  },
+
+  "locations": {
+    "empty": "You don't have any bookmarks"
+  },
+
+  "navigation": {
+    "home": "Home",
+    "locations": "Locations",
+    "settings": "Settings"
+  },
+
+  "settings": {
+    "title": "Settings",
+    "temperature": "Temeperature",
+    "celcius": "Celcius",
+    "fahrenheit": "Fahrenheit",
+    "language": "Language",
+    "en": "English",
+    "fi": "Suomi",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark"
+  }
+}

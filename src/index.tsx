@@ -5,12 +5,15 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import registerServiceWorker from "./registerServiceWorker";
 import { store, persistor } from "./config/store";
-import Routes from "./config/routes";
+import Routes from "./config/Routes";
+import Translations from "./config/Translations";
 
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <Routes />
+      <Translations>
+        <Routes />
+      </Translations>
     </PersistGate>
   </Provider>,
   document.getElementById("root") as HTMLElement

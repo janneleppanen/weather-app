@@ -1,0 +1,29 @@
+{
+  "common": {
+    "enterLocation": "Anna sijainti",
+    "remember": "Muista kohde"
+  },
+
+  "locations": {
+    "empty": "En ole vielä tallentanut kohteita"
+  },
+
+  "navigation": {
+    "home": "Etusivu",
+    "locations": "Kohteet",
+    "settings": "Asetukset"
+  },
+
+  "settings": {
+    "title": "Asetukset",
+    "temperature": "Läpöasteikko",
+    "celcius": "Celcius",
+    "fahrenheit": "Fahrenheit",
+    "language": "Kieli",
+    "en": "English",
+    "fi": "Suomi",
+    "theme": "Ulkoasu",
+    "light": "Vaalea",
+    "dark": "Tumma"
+  }
+}

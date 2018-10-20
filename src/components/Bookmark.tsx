@@ -4,6 +4,7 @@ import { Container } from "../common";
 
 interface Props {
   location: string;
+  label: string;
   checked: boolean;
   onSelect?: (e: React.FormEvent) => void;
   onUnselect?: (e: React.FormEvent) => void;
@@ -23,7 +24,7 @@ const Bookmark = (props: Props) => {
     <Container textAlignCenter>
       <label>
         <input type="checkbox" onChange={onChange} checked={props.checked} />{" "}
-        Remember this
+        {props.label}
       </label>
     </Container>
   );

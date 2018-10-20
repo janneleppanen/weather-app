@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { withNamespaces } from "react-i18next";
 
 const Menu = styled.ul`
   list-style: none;
@@ -17,20 +18,20 @@ const MenuItem = styled.li`
   font-size: 0.875rem;
 `;
 
-const Header = props => {
+const Header = ({ t }) => {
   return (
     <Menu>
       <MenuItem>
-        <Link to="/">Home</Link>
+        <Link to="/">{t("navigation.home")}</Link>
       </MenuItem>
       <MenuItem>
-        <Link to="/locations">Locations</Link>
+        <Link to="/locations">{t("navigation.locations")}</Link>
       </MenuItem>
       <MenuItem>
-        <Link to="/settings">Settings</Link>
+        <Link to="/settings">{t("navigation.settings")}</Link>
       </MenuItem>
     </Menu>
   );
 };
 
-export default Header;
+export default withNamespaces()(Header);

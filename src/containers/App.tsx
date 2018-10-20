@@ -1,8 +1,10 @@
 import * as React from "react";
 import { RouteProps } from "react-router";
 import _ from "lodash";
+import { compose } from "lodash/fp";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
+import { withNamespaces } from "react-i18next";
 
 import MainForecastWrapper from "../components/MainForecastWrapper";
 import Bookmark from "../components/Bookmark";
@@ -59,7 +61,7 @@ class App extends React.Component<Props & RouteProps, State> {
   };
 
   public render() {
-    const { addBookmark, removeBookmark, bookmarks } = this.props;
+    const { addBookmark, removeBookmark, bookmarks, t } = this.props;
     const { weather, loading } = this.props.forecast;
     const { location } = this.state;
 
@@ -70,13 +72,14 @@ class App extends React.Component<Props & RouteProps, State> {
           onChange={e => this.setState({ location: e.target.value })}
           onBlur={() => this.updateForecast()}
           onKeyDown={e => e.key === "Enter" && this.updateForecast()}
-          placeholder="Enter your location"
+          placeholder={t("common.enterLocation")}
         />
 
         {loading && <Notice centerText>Loading...</Notice>}
 
         <Bookmark
           location={location}
+          label={t("common.remember")}
           checked={bookmarks.includes(location)}
           onSelect={() => addBookmark(location)}
           onUnselect={() => removeBookmark(location)}
@@ -127,7 +130,10 @@ class App extends React.Component<Props & RouteProps, State> {
 
 const mapStateToProps = ({ forecast, bookmarks }) => ({ forecast, bookmarks });
 
-export default connect(
-  mapStateToProps,
-  { getForecastRequest, addBookmark, removeBookmark }
+export default compose(
+  withNamespaces(),
+  connect(
+    mapStateToProps,
+    { getForecastRequest, addBookmark, removeBookmark }
+  )
 )(App);

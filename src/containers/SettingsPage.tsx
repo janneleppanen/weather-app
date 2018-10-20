@@ -1,6 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
+import { compose } from "lodash/fp";
+import { withNamespaces } from "react-i18next";
 
 import { Container } from "../common";
 import * as actions from "../redux/SettingsReducer";
@@ -13,6 +15,7 @@ interface Props {
   setTemperature: (TemperatureSetting) => void;
   setLanguage: (LanguageSetting) => void;
   setTheme: (ThemeSetting) => void;
+  t: any;
 }
 
 class SettingsPage extends React.Component<Props, {}> {
@@ -23,13 +26,15 @@ class SettingsPage extends React.Component<Props, {}> {
       theme,
       setTemperature,
       setLanguage,
-      setTheme
+      setTheme,
+      t
     } = this.props;
+
     return (
       <Container>
-        <h1>Settings</h1>
+        <h1>{t("settings.title")}</h1>
         <div>
-          <h2>Temeprature</h2>
+          <h2>{t("settings.temperature")}</h2>
           {_.map(Temperatures, (item, key) => (
             <label key={key}>
               <input
@@ -39,13 +44,13 @@ class SettingsPage extends React.Component<Props, {}> {
                 name="temperature"
                 value={key}
               />{" "}
-              {item}
+              {t(`settings.${key}`)}
             </label>
           ))}
         </div>
 
         <div>
-          <h2>Language</h2>
+          <h2>{t("settings.language")}</h2>
           {_.map(Languages, (item, key) => (
             <label key={key}>
               <input
@@ -55,13 +60,13 @@ class SettingsPage extends React.Component<Props, {}> {
                 name="language"
                 value={key}
               />{" "}
-              {item}
+              {t(`settings.${key}`)}
             </label>
           ))}
         </div>
 
         <div>
-          <h2>Theme</h2>
+          <h2>{t("settings.theme")}</h2>
           {_.map(Themes, (item, key) => (
             <label key={key}>
               <input
@@ -71,7 +76,7 @@ class SettingsPage extends React.Component<Props, {}> {
                 name="theme"
                 value={key}
               />{" "}
-              {item}
+              {t(`settings.${key}`)}
             </label>
           ))}
         </div>
@@ -86,7 +91,10 @@ const mapStateToProps = (state: GlobalState) => ({
   theme: state.settings.theme
 });
 
-export default connect(
-  mapStateToProps,
-  actions
+export default compose(
+  withNamespaces(),
+  connect(
+    mapStateToProps,
+    actions
+  )
 )(SettingsPage);

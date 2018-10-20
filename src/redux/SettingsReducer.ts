@@ -2,6 +2,7 @@ import { createActions } from "redux-actions";
 
 import { handleActions } from "../utils/redux-helpers";
 import { Temperatures, Languages, Themes } from "../config/constants";
+import i18n from "../config/i18n";
 
 export const SET_TEMPERATURE = "SET_TEMPERATURE";
 export const SET_LANGUAGE = "SET_LANGUAGE";
@@ -28,6 +29,7 @@ const reducer = handleActions(
     },
     [SET_LANGUAGE]: (state: State, payload) => {
       state.language = payload;
+      i18n.changeLanguage(payload);
     },
     [SET_THEME]: (state: State, payload) => {
       state.theme = payload;
