@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { connect } from "react-redux";
 
-import { lightTheme, darkTheme, GlobalStyles } from "../config/global-styles";
+import { lightTheme, darkTheme, GlobalStyles } from "./global-styles";
 import App from "../containers/App";
 import Header from "../components/Header";
 import { Background } from "../common";
