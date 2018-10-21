@@ -1,6 +1,6 @@
-# Weather App
+# Weather
 
-Just another weather app.
+Weather shows weather forecast powered by [Open Weather Map](https://openweathermap.org/). This is a side project, where I've collected things I've learned while developing with React ecosystem.
 
 # Usage
 
@@ -16,9 +16,13 @@ Run application `yarn start`
 
 # Stack
 
-[React &rarr;](https://reactjs.org)  
-[Redux &rarr;](https://redux.js.org/introduction)  
-[Redux-Saga &rarr;](https://redux-saga.js.org)  
-[Styled Compoennts &rarr;](https://www.styled-components.com)  
-[Date-fns &rarr;](https://date-fns.org)  
-[React Router &rarr;](https://reacttraining.com/react-router/)
+[React &rarr;](https://reactjs.org) for managing UI  
+[Redux &rarr;](https://redux.js.org/introduction) for state management  
+[TypeScript &rarr;]() for typing  
+[Redux-Saga &rarr;](https://redux-saga.js.org) for side effects  
+[Styled Components &rarr;](https://www.styled-components.com) for styling  
+[Date-fns &rarr;](https://date-fns.org) for date formatting  
+[React Router &rarr;](https://reacttraining.com/react-router/) for routing  
+[Immer &rarr;](https://github.com/mweststrate/immer) for immutability  
+[i18next &rarr;](https://www.i18next.com/) for translations  
+[Jest](https://jestjs.io/) & [Enzyme &rarr;](https://airbnb.io/enzyme/) for testing

@@ -16,7 +16,7 @@
 
   "settings": {
     "title": "Settings",
-    "temperature": "Temeperature",
+    "temperature": "Temperature",
     "celcius": "Celcius",
     "fahrenheit": "Fahrenheit",
     "language": "Language",
