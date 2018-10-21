@@ -1,5 +1,7 @@
 # Weather
 
+![Build](https://travis-ci.org/janneleppanen/weather-app.svg?branch=master)
+
 Weather shows weather forecast powered by [Open Weather Map](https://openweathermap.org/). This is a side project, where I've collected things I've learned while developing with React ecosystem.
 
 # Usage
