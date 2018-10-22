@@ -39,10 +39,10 @@ class SettingsPage extends React.Component<Props, {}> {
             <label key={key}>
               <input
                 type="radio"
-                checked={key === temperature}
-                onChange={() => setTemperature(key)}
+                checked={item === temperature}
+                onChange={() => setTemperature(item)}
                 name="temperature"
-                value={key}
+                value={item}
               />{" "}
               {t(`settings.${key}`)}
             </label>

@@ -1,13 +1,14 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import { displayCelciusFromKelvin } from "../utils/temperature";
+import { displayTemperature } from "../utils/temperature";
 
 interface Props {
   temperature: number;
   temperatureMin?: number;
   temperatureMax?: number;
   date: string;
+  temperatureScale: TemperatureSetting;
 }
 
 const Wrapper = styled.div`
@@ -31,11 +32,11 @@ const Title = styled.p`
 `;
 
 const Forecast = (props: Props) => {
-  const { temperature, date } = props;
+  const { temperature, date, temperatureScale } = props;
   return (
     <Wrapper>
       <Date>{date}</Date>
-      <Title>{displayCelciusFromKelvin(temperature)}</Title>
+      <Title>{displayTemperature(temperature, temperatureScale)}</Title>
     </Wrapper>
   );
 };

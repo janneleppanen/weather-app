@@ -24,6 +24,7 @@ interface Props {
     weather: any;
   };
   getForecastRequest: any;
+  temperature: TemperatureSetting;
 }
 
 interface State {
@@ -103,6 +104,7 @@ class App extends React.Component<Props & RouteProps, State> {
 
   renderWeather = () => {
     const { weather } = this.props.forecast;
+    const temperature = this.props.temperature;
     const { location } = this.state;
 
     return (
@@ -110,6 +112,7 @@ class App extends React.Component<Props & RouteProps, State> {
         <CurrentWeather
           location={weather.city.name}
           forecast={weather.list[0]}
+          temperatureScale={temperature}
         />
 
         <ForecastDays
@@ -119,6 +122,7 @@ class App extends React.Component<Props & RouteProps, State> {
               <Forecast
                 date={format(key, "ddd")}
                 temperature={getForecastMax(item)}
+                temperatureScale={temperature}
               />
             </Link>
           )}
@@ -128,7 +132,11 @@ class App extends React.Component<Props & RouteProps, State> {
   };
 }
 
-const mapStateToProps = ({ forecast, bookmarks }) => ({ forecast, bookmarks });
+const mapStateToProps = ({ forecast, bookmarks, settings }) => ({
+  forecast,
+  bookmarks,
+  temperature: settings.temperature
+});
 
 export default compose(
   withNamespaces(),
