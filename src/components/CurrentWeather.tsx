@@ -1,12 +1,13 @@
 import * as React from "react";
 import { format } from "date-fns";
 
-import { kelvinToCelcius } from "../utils/temperature";
+import { displayTemperature } from "../utils/temperature";
 import styled, { css } from "styled-components";
 
 interface Props {
   forecast: Forecast;
   location: String;
+  temperatureScale: TemperatureSetting;
 }
 
 const Wrapper = styled.div`
@@ -29,14 +30,14 @@ const Temperature = styled.p`
 `;
 
 const CurrentWeather = (props: Props) => {
-  const { forecast, location } = props;
+  const { forecast, location, temperatureScale } = props;
   return (
     <Wrapper>
       <P noMargin>{location}</P>
       <P noMargin>{format(forecast.dt, "ddd, MMM D")}</P>
       <P noMargin>{forecast.weather[0].description}</P>
       <Temperature>
-        {kelvinToCelcius(forecast.main.temp).toFixed(0)} °C
+        {displayTemperature(forecast.main.temp, temperatureScale)}
       </Temperature>
     </Wrapper>
   );
