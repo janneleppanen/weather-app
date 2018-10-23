@@ -16,6 +16,7 @@ import { connect } from "react-redux";
 import { getForecastRequest } from "../redux/ForecastReducer";
 import { addBookmark, removeBookmark } from "../redux/BookmarkReducer";
 import { getForecastMax } from "../utils/forecast";
+import { getForecastByCoords } from "../services/OpenWeatherMap";
 
 interface Props {
   forecast: {
@@ -46,7 +47,19 @@ class App extends React.Component<Props & RouteProps, State> {
       location = this.props.match.params.location;
       this.setState({ location });
     }
-    this.props.getForecastRequest(location);
+    if (location) this.props.getForecastRequest(location);
+
+    if (!location && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(e => {
+        const { latitude, longitude } = e.coords;
+        getForecastByCoords(latitude, longitude).then(res => {
+          if (!this.state.location) {
+            const newLocation = res.list[0].name;
+            this.props.history.push(`/locations/${newLocation}`);
+          }
+        });
+      });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
