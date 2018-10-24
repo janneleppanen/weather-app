@@ -48,18 +48,6 @@ class App extends React.Component<Props & RouteProps, State> {
       this.setState({ location });
     }
     if (location) this.props.getForecastRequest(location);
-
-    if (!location && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(e => {
-        const { latitude, longitude } = e.coords;
-        getForecastByCoords(latitude, longitude).then(res => {
-          if (!this.state.location) {
-            const newLocation = res.list[0].name;
-            this.props.history.push(`/locations/${newLocation}`);
-          }
-        });
-      });
-    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -72,6 +60,19 @@ class App extends React.Component<Props & RouteProps, State> {
   updateForecast = async () => {
     if (!this.state.location) return;
     this.props.history.push(`/locations/${this.state.location}`);
+  };
+
+  updateForecastByLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(e => {
+        const { latitude, longitude } = e.coords;
+        getForecastByCoords(latitude, longitude).then(res => {
+          const newLocation = res.list[0].name;
+          this.setState({ location: newLocation });
+          this.updateForecast();
+        });
+      });
+    }
   };
 
   public render() {
@@ -98,6 +99,12 @@ class App extends React.Component<Props & RouteProps, State> {
           onSelect={() => addBookmark(location)}
           onUnselect={() => removeBookmark(location)}
         />
+
+        <Container textAlignCenter>
+          <button onClick={this.updateForecastByLocation}>
+            {t("common.geolocationButton")}
+          </button>
+        </Container>
 
         {weather !== undefined &&
           weather.cod !== "200" &&

@@ -1,7 +1,8 @@
 {
   "common": {
     "enterLocation": "Anna sijainti",
-    "remember": "Muista kohde"
+    "remember": "Muista kohde",
+    "geolocationButton": "Käytä minun sijaintia"
   },
 
   "locations": {

@@ -1,7 +1,8 @@
 {
   "common": {
     "enterLocation": "Enter your location",
-    "remember": "Remember this"
+    "remember": "Remember this",
+    "geolocationButton": "Use my location"
   },
 
   "locations": {
