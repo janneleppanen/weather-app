@@ -10,7 +10,7 @@ export const SET_THEME = "SET_THEME";
 type State = Settings;
 
 export const STATE = {
-  temperature: Object.values(Temperatures)[0],
+  temperature: Object.keys(Temperatures).map(key => Temperatures[key])[0],
   language: Object.keys(Languages)[0],
   theme: Object.keys(Themes)[0]
 };
