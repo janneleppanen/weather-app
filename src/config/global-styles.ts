@@ -13,6 +13,7 @@ export const lightTheme = {
   text: "#353c44",
 
   // Dimensions
+  borderRadius: "3px",
   space: "1rem",
   maxWidth: "1000px"
 };
@@ -29,6 +30,7 @@ export const darkTheme = {
   text: "#fff",
 
   // Dimensions
+  borderRadius: "3px",
   space: "1rem",
   maxWidth: "1000px"
 };

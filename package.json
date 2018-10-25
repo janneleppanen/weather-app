@@ -11,6 +11,7 @@
     "i18next-xhr-backend": "^1.5.1",
     "immer": "^1.7.2",
     "lodash": "^4.17.11",
+    "polished": "^2.3.0",
     "react": "^16.6.0",
     "react-app-rewired": "^1.6.2",
     "react-dom": "^16.5.2",

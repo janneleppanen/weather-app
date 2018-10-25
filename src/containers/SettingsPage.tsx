@@ -4,7 +4,7 @@ import _ from "lodash";
 import { compose } from "lodash/fp";
 import { withNamespaces } from "react-i18next";
 
-import { Container } from "../common";
+import { Container, ToggleButton } from "../common";
 import * as actions from "../redux/SettingsReducer";
 import { Temperatures, Languages, Themes } from "../config/constants";
 
@@ -36,48 +36,36 @@ class SettingsPage extends React.Component<Props, {}> {
         <div>
           <h2>{t("settings.temperature")}</h2>
           {_.map(Temperatures, (item, key) => (
-            <label key={key}>
-              <input
-                type="radio"
-                checked={item === temperature}
-                onChange={() => setTemperature(item)}
-                name="temperature"
-                value={item}
-              />{" "}
-              {t(`settings.${key}`)}
-            </label>
+            <ToggleButton
+              key={key}
+              checked={item === temperature}
+              onClick={() => setTemperature(item)}
+              label={t(`settings.${key}`)}
+            />
           ))}
         </div>
 
         <div>
           <h2>{t("settings.language")}</h2>
           {_.map(Languages, (item, key) => (
-            <label key={key}>
-              <input
-                type="radio"
-                checked={key === language}
-                onChange={() => setLanguage(key)}
-                name="language"
-                value={key}
-              />{" "}
-              {t(`settings.${key}`)}
-            </label>
+            <ToggleButton
+              key={key}
+              checked={item === language}
+              onClick={() => setLanguage(key)}
+              label={t(`settings.${key}`)}
+            />
           ))}
         </div>
 
         <div>
           <h2>{t("settings.theme")}</h2>
           {_.map(Themes, (item, key) => (
-            <label key={key}>
-              <input
-                type="radio"
-                checked={key === theme}
-                onChange={() => setTheme(key)}
-                name="theme"
-                value={key}
-              />{" "}
-              {t(`settings.${key}`)}
-            </label>
+            <ToggleButton
+              key={key}
+              checked={key === theme}
+              onClick={() => setTheme(key)}
+              label={t(`settings.${key}`)}
+            />
           ))}
         </div>
       </Container>
