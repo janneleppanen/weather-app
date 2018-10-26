@@ -83,29 +83,36 @@ class App extends React.Component<Props & RouteProps, State> {
     return (
       <Container>
         <h1 className="screen-reader-text">{t("main.title")}</h1>
+        <label className="screen-reader-text" htmlFor="search">
+          {t("common.enterLocation")}
+        </label>
         <Input
           value={location}
+          name="search"
           onChange={e => this.setState({ location: e.target.value })}
           onBlur={() => this.updateForecast()}
           onKeyDown={e => e.key === "Enter" && this.updateForecast()}
           placeholder={t("common.enterLocation")}
-          label={t("common.enterLocation")}
         />
 
         {loading && <Notice centerText>Loading...</Notice>}
 
-        <Bookmark
-          location={location}
-          label={t("common.remember")}
-          checked={bookmarks.includes(location)}
-          onSelect={() => addBookmark(location)}
-          onUnselect={() => removeBookmark(location)}
-        />
+        <p>
+          <Bookmark
+            location={location}
+            label={t("common.remember")}
+            checked={bookmarks.includes(location)}
+            onSelect={() => addBookmark(location)}
+            onUnselect={() => removeBookmark(location)}
+          />
+        </p>
 
         <Container textAlignCenter>
-          <button onClick={this.updateForecastByLocation}>
-            {t("common.geolocationButton")}
-          </button>
+          <p>
+            <button onClick={this.updateForecastByLocation}>
+              {t("common.geolocationButton")}
+            </button>
+          </p>
         </Container>
 
         {weather !== undefined &&

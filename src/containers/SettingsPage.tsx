@@ -4,7 +4,7 @@ import _ from "lodash";
 import { compose } from "lodash/fp";
 import { withNamespaces } from "react-i18next";
 
-import { Container, ToggleButton } from "../common";
+import { Container, ToggleButton, FormGroup } from "../common";
 import * as actions from "../redux/SettingsReducer";
 import { Temperatures, Languages, Themes } from "../config/constants";
 
@@ -33,7 +33,7 @@ class SettingsPage extends React.Component<Props, {}> {
     return (
       <Container>
         <h1>{t("settings.title")}</h1>
-        <div>
+        <FormGroup>
           <h2>{t("settings.temperature")}</h2>
           {_.map(Temperatures, (item, key) => (
             <ToggleButton
@@ -43,9 +43,9 @@ class SettingsPage extends React.Component<Props, {}> {
               label={t(`settings.${key}`)}
             />
           ))}
-        </div>
+        </FormGroup>
 
-        <div>
+        <FormGroup>
           <h2>{t("settings.language")}</h2>
           {_.map(Languages, (item, key) => (
             <ToggleButton
@@ -55,9 +55,9 @@ class SettingsPage extends React.Component<Props, {}> {
               label={t(`settings.${key}`)}
             />
           ))}
-        </div>
+        </FormGroup>
 
-        <div>
+        <FormGroup>
           <h2>{t("settings.theme")}</h2>
           {_.map(Themes, (item, key) => (
             <ToggleButton
@@ -67,7 +67,7 @@ class SettingsPage extends React.Component<Props, {}> {
               label={t(`settings.${key}`)}
             />
           ))}
-        </div>
+        </FormGroup>
       </Container>
     );
   }

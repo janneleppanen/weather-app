@@ -9,8 +9,10 @@
     "title": "Etsi ennusteita"
   },
 
-  "locations": {
-    "empty": "En ole vielä tallentanut kohteita"
+  "bookmarks": {
+    "empty": "En ole vielä tallentanut kohteita",
+    "search": "Etsi ennuste",
+    "title": "Kirjanmerkit"
   },
 
   "navigation": {

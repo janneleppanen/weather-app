@@ -5,7 +5,7 @@ interface Props {
 }
 
 const Container = styled.div<Props>`
-  max-width: ${props => props.theme.maxWidth};
+  max-width: ${props => props.theme.maxWidth}px;
   margin: 0 auto;
 
   ${(props: Props) =>

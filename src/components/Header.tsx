@@ -18,17 +18,21 @@ const MenuItem = styled.li`
   font-size: 0.875rem;
 `;
 
+const MenuLink = styled(Link)`
+  color: ${props => props.theme.text};
+`;
+
 const Header = ({ t }) => {
   return (
     <Menu>
       <MenuItem>
-        <Link to="/">{t("navigation.home")}</Link>
+        <MenuLink to="/">{t("navigation.home")}</MenuLink>
       </MenuItem>
       <MenuItem>
-        <Link to="/locations">{t("navigation.locations")}</Link>
+        <MenuLink to="/locations">{t("navigation.locations")}</MenuLink>
       </MenuItem>
       <MenuItem>
-        <Link to="/settings">{t("navigation.settings")}</Link>
+        <MenuLink to="/settings">{t("navigation.settings")}</MenuLink>
       </MenuItem>
     </Menu>
   );

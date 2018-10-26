@@ -7,7 +7,7 @@ import { lightTheme, darkTheme, GlobalStyles } from "./global-styles";
 import App from "../containers/App";
 import Header from "../components/Header";
 import { Background } from "../common";
-import LocationsPage from "../containers/LocationsPage";
+import BookmarksPage from "../containers/BookmarksPage";
 import SettingsPage from "../containers/SettingsPage";
 
 const DateDetails = () => <div>Date Details Page</div>;
@@ -23,7 +23,7 @@ const Routes = props => {
 
           <Route exact path="/" component={App} />
           <Route exact path="/settings" component={SettingsPage} />
-          <Route exact path="/locations" component={LocationsPage} />
+          <Route exact path="/locations" component={BookmarksPage} />
           <Route exact path="/locations/:location" component={App} />
           <Route path="/locations/:location/:date" component={DateDetails} />
         </Background>

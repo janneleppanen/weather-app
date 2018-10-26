@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   border-right: 1px solid #eee;
   padding: 0.25rem;
   text-align: center;
+  color: ${props => props.theme.text}
   &:last-child {
     border: none;
   }

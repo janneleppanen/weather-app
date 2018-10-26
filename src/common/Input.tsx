@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   value: string;
-  label?: string;
 }
 
 const InputElement = styled.input`
@@ -28,14 +27,7 @@ const InputElement = styled.input`
 class Input extends React.Component<Props, {}> {
   render() {
     const { value, ...restProps } = this.props;
-    return (
-      <React.Fragment>
-        <label className="screen-reader-text" htmlFor={this.props.name}>
-          {this.props.label}
-        </label>
-        <InputElement value={value} {...restProps} />
-      </React.Fragment>
-    );
+    return <InputElement value={value} {...restProps} />;
   }
 }
 
