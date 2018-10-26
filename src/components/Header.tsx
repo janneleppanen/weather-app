@@ -29,7 +29,7 @@ const Header = ({ t }) => {
         <MenuLink to="/">{t("navigation.home")}</MenuLink>
       </MenuItem>
       <MenuItem>
-        <MenuLink to="/locations">{t("navigation.locations")}</MenuLink>
+        <MenuLink to="/bookmarks">{t("navigation.locations")}</MenuLink>
       </MenuItem>
       <MenuItem>
         <MenuLink to="/settings">{t("navigation.settings")}</MenuLink>

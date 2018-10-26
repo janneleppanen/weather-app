@@ -10,8 +10,10 @@ export const lightTheme = {
   light: "#D9DCDD",
   lighter: "#EFF3F4",
   background: "white",
+  headerBackground: "whitesmoke",
   text: "#353c44",
   borderColor: "#ddd",
+  headerBorder: "1px solid #ccc",
 
   // Dimensions
   borderRadius: 3,
@@ -28,8 +30,10 @@ export const darkTheme = {
   light: "#ddd",
   lighter: "#EFF3F4",
   background: "#353c44",
+  headerBackground: "#333",
   text: "#fff",
   borderColor: "#292d33",
+  headerBorder: "1px solid tomato",
 
   // Dimensions
   borderRadius: 3,

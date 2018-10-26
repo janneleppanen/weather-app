@@ -1,11 +1,10 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { connect } from "react-redux";
 
 import { lightTheme, darkTheme, GlobalStyles } from "./global-styles";
 import App from "../containers/App";
-import Header from "../components/Header";
 import { Background } from "../common";
 import BookmarksPage from "../containers/BookmarksPage";
 import SettingsPage from "../containers/SettingsPage";
@@ -19,13 +18,12 @@ const Routes = props => {
       <Router>
         <Background>
           <GlobalStyles />
-          <Header />
-
-          <Route exact path="/" component={App} />
-          <Route exact path="/settings" component={SettingsPage} />
-          <Route exact path="/locations" component={BookmarksPage} />
+          <Route exact path="/locations" component={App} />
           <Route exact path="/locations/:location" component={App} />
           <Route path="/locations/:location/:date" component={DateDetails} />
+          <Route exact path="/settings" component={SettingsPage} />
+          <Route exact path="/bookmarks" component={BookmarksPage} />
+          <Route exact path="/" render={() => <Redirect to="/locations" />} />
         </Background>
       </Router>
     </ThemeProvider>
