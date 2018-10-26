@@ -8,6 +8,7 @@ import { withNamespaces } from "react-i18next";
 
 import MainForecastWrapper from "../components/MainForecastWrapper";
 import Bookmark from "../components/Bookmark";
+import Header from "../components/Header";
 import { Container, Input, Notice } from "../common";
 import Forecast from "../components/Forecast";
 import CurrentWeather from "../components/CurrentWeather";
@@ -82,6 +83,7 @@ class App extends React.Component<Props & RouteProps, State> {
 
     return (
       <Container>
+        <Header />
         <h1 className="screen-reader-text">{t("main.title")}</h1>
         <label className="screen-reader-text" htmlFor="search">
           {t("common.enterLocation")}
@@ -89,6 +91,7 @@ class App extends React.Component<Props & RouteProps, State> {
         <Input
           value={location}
           name="search"
+          id="search"
           onChange={e => this.setState({ location: e.target.value })}
           onBlur={() => this.updateForecast()}
           onKeyDown={e => e.key === "Enter" && this.updateForecast()}
@@ -97,15 +100,13 @@ class App extends React.Component<Props & RouteProps, State> {
 
         {loading && <Notice centerText>Loading...</Notice>}
 
-        <p>
-          <Bookmark
-            location={location}
-            label={t("common.remember")}
-            checked={bookmarks.includes(location)}
-            onSelect={() => addBookmark(location)}
-            onUnselect={() => removeBookmark(location)}
-          />
-        </p>
+        <Bookmark
+          location={location}
+          label={t("common.remember")}
+          checked={bookmarks.includes(location)}
+          onSelect={() => addBookmark(location)}
+          onUnselect={() => removeBookmark(location)}
+        />
 
         <Container textAlignCenter>
           <p>
