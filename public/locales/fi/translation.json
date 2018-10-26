@@ -5,6 +5,10 @@
     "geolocationButton": "Käytä minun sijaintia"
   },
 
+  "main": {
+    "title": "Etsi ennusteita"
+  },
+
   "locations": {
     "empty": "En ole vielä tallentanut kohteita"
   },

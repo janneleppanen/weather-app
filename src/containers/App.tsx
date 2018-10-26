@@ -82,12 +82,14 @@ class App extends React.Component<Props & RouteProps, State> {
 
     return (
       <Container>
+        <h1 className="screen-reader-text">{t("main.title")}</h1>
         <Input
           value={location}
           onChange={e => this.setState({ location: e.target.value })}
           onBlur={() => this.updateForecast()}
           onKeyDown={e => e.key === "Enter" && this.updateForecast()}
           placeholder={t("common.enterLocation")}
+          label={t("common.enterLocation")}
         />
 
         {loading && <Notice centerText>Loading...</Notice>}

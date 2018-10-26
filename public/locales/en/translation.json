@@ -5,6 +5,10 @@
     "geolocationButton": "Use my location"
   },
 
+  "main": {
+    "title": "Search forecasts"
+  },
+
   "locations": {
     "empty": "You don't have any bookmarks"
   },
