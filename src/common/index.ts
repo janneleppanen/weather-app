@@ -4,3 +4,4 @@ export { default as HorizontalScrollList } from "./HorizontalScrollList";
 export { default as Input } from "./Input";
 export { default as Notice } from "./Notice";
 export { default as ToggleButton } from "./ToggleButton";
+export { default as FormGroup } from "./FormGroup";

@@ -92,18 +92,22 @@ class App extends React.Component<Props & RouteProps, State> {
 
         {loading && <Notice centerText>Loading...</Notice>}
 
-        <Bookmark
-          location={location}
-          label={t("common.remember")}
-          checked={bookmarks.includes(location)}
-          onSelect={() => addBookmark(location)}
-          onUnselect={() => removeBookmark(location)}
-        />
+        <p>
+          <Bookmark
+            location={location}
+            label={t("common.remember")}
+            checked={bookmarks.includes(location)}
+            onSelect={() => addBookmark(location)}
+            onUnselect={() => removeBookmark(location)}
+          />
+        </p>
 
         <Container textAlignCenter>
-          <button onClick={this.updateForecastByLocation}>
-            {t("common.geolocationButton")}
-          </button>
+          <p>
+            <button onClick={this.updateForecastByLocation}>
+              {t("common.geolocationButton")}
+            </button>
+          </p>
         </Container>
 
         {weather !== undefined &&

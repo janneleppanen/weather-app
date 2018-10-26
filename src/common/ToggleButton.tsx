@@ -23,7 +23,7 @@ const Button = styled.button<any>`
   padding: 0.5rem 1.25rem;
   color: ${props => (props.checked ? "white" : props.theme.text)};
   outline: none;
-  border-radius: ${props => props.theme.borderRadius};
+  border-radius: ${props => props.theme.borderRadius}px;
   cursor: pointer;
   ${props =>
     props.checked

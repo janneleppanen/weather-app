@@ -11,11 +11,12 @@ export const lightTheme = {
   lighter: "#EFF3F4",
   background: "white",
   text: "#353c44",
+  borderColor: "#ddd",
 
   // Dimensions
-  borderRadius: "3px",
-  space: "1rem",
-  maxWidth: "1000px"
+  borderRadius: 3,
+  space: 1,
+  maxWidth: 700
 };
 
 export const darkTheme = {
@@ -28,11 +29,12 @@ export const darkTheme = {
   lighter: "#EFF3F4",
   background: "#353c44",
   text: "#fff",
+  borderColor: "#292d33",
 
   // Dimensions
-  borderRadius: "3px",
-  space: "1rem",
-  maxWidth: "1000px"
+  borderRadius: 3,
+  space: 1,
+  maxWidth: 700
 };
 
 export const GlobalStyles = createGlobalStyle<any>`
@@ -57,6 +59,19 @@ export const GlobalStyles = createGlobalStyle<any>`
 
   a {
     text-decoration: none;
-    color: ${props => props.theme.text};
+    color: ${props => props.theme.main};
+  }
+
+  h1, h2 {
+    letter-spacing: -0.02em;
+    margin: 0 0 .5em 0;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1rem;
   }
 `;

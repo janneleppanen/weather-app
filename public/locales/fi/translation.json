@@ -5,8 +5,10 @@
     "geolocationButton": "Käytä minun sijaintia"
   },
 
-  "locations": {
-    "empty": "En ole vielä tallentanut kohteita"
+  "bookmarks": {
+    "empty": "En ole vielä tallentanut kohteita",
+    "search": "Etsi ennuste",
+    "title": "Kirjanmerkit"
   },
 
   "navigation": {

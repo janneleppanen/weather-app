@@ -5,8 +5,10 @@
     "geolocationButton": "Use my location"
   },
 
-  "locations": {
-    "empty": "You don't have any bookmarks"
+  "bookmarks": {
+    "empty": "You don't have any bookmarks.",
+    "search": "Search for locations",
+    "title": "Bookmarks"
   },
 
   "navigation": {
