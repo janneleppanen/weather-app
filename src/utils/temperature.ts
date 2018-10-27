@@ -26,3 +26,14 @@ export const displayTemperature = (
   };
   return temperatureConvertMap[temperatureScale](kelvin);
 };
+
+export const getConvertedTemperature = (
+  kelvin: number,
+  temperatureScale: TemperatureSetting
+) => {
+  const temperatureConvertMap = {
+    [Temperatures.fahrenheit]: kelvinToFahrenheit,
+    [Temperatures.celcius]: kelvinToCelcius
+  };
+  return temperatureConvertMap[temperatureScale](kelvin);
+};

@@ -8,8 +8,7 @@ import App from "../containers/App";
 import { Background } from "../common";
 import BookmarksPage from "../containers/BookmarksPage";
 import SettingsPage from "../containers/SettingsPage";
-
-const DateDetails = () => <div>Date Details Page</div>;
+import DetailsPage from "../containers/DetailsPage";
 
 const Routes = props => {
   const theme = props.theme === "light" ? lightTheme : darkTheme;
@@ -20,7 +19,7 @@ const Routes = props => {
           <GlobalStyles />
           <Route exact path="/locations" component={App} />
           <Route exact path="/locations/:location" component={App} />
-          <Route path="/locations/:location/:date" component={DateDetails} />
+          <Route path="/locations/:location/:date" component={DetailsPage} />
           <Route exact path="/settings" component={SettingsPage} />
           <Route exact path="/bookmarks" component={BookmarksPage} />
           <Route exact path="/" render={() => <Redirect to="/locations" />} />

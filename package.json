@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@types/enzyme": "^3.1.14",
+    "@vx/responsive": "^0.0.179",
+    "@vx/scale": "^0.0.179",
+    "@vx/shape": "^0.0.179",
     "date-fns": "^1.29.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
