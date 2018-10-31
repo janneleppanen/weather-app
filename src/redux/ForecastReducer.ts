@@ -15,7 +15,7 @@ const STATE = {
 export const { getForecastRequest } = createActions({
   [GET_FORECAST.REQUEST]: (payload: string = "") => payload,
   [GET_FORECAST.ERROR]: (payload: string = "") => payload,
-  [GET_FORECAST.REQUEST]: (payload: any) => payload
+  [GET_FORECAST.REQUEST]: (payload: string = "") => payload
 });
 
 const reducer = handleActions(

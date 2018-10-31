@@ -19,15 +19,21 @@ import { addBookmark, removeBookmark } from "../redux/BookmarkReducer";
 import { getForecastMax } from "../utils/forecast";
 import { getForecastByCoords } from "../services/OpenWeatherMap";
 
-interface Props {
+interface OwnProps {
   forecast: {
     test: string;
     loading: boolean;
-    weather: any;
+    weather: Weather | null;
   };
-  getForecastRequest: any;
+  getForecastRequest: Function;
   temperature: TemperatureSetting;
+  addBookmark: Function;
+  removeBookmark: Function;
+  t: i18nT;
+  bookmarks: Array<string>;
 }
+
+type Props = OwnProps & RouterProps;
 
 interface State {
   weather: Weather | null;

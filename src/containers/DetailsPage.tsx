@@ -10,15 +10,16 @@ import {
 } from "../utils/temperature";
 import RangeChart from "../components/RangeChart";
 
-interface Props {
+interface OwnProps {
   forecast: {
     test: string;
     loading: boolean;
-    weather: any;
+    weather: Weather;
   };
-  match: any;
   temperatureScale: TemperatureSetting;
 }
+
+type Props = OwnProps & RouterProps;
 
 class DetailsPage extends React.Component<Props> {
   render() {

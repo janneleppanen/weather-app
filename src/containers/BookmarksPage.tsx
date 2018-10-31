@@ -10,7 +10,7 @@ import { Container, Notice } from "../common";
 
 interface Props {
   bookmarks: Bookmarks;
-  t: any;
+  t: i18nT;
 }
 
 class BookmarksPage extends React.Component<Props, {}> {

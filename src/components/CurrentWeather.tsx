@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 
 const P = styled.p<{ noMargin: boolean }>`
   opacity: 0.6;
-  ${(props: any) =>
+  ${props =>
     props.noMargin &&
     css`
       margin: 0;
