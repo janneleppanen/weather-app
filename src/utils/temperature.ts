@@ -1,4 +1,4 @@
-import { Temperatures } from "src/config/constants";
+import { Temperatures } from "../config/constants";
 
 export const kelvinToCelcius = (kelvin: number) => {
   return kelvin - 273.15;
