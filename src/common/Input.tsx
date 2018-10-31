@@ -24,11 +24,9 @@ const InputElement = styled.input`
   }
 `;
 
-class Input extends React.Component<Props, {}> {
-  render() {
-    const { value, ...restProps } = this.props;
-    return <InputElement value={value} {...restProps} />;
-  }
-}
+const Input = (props: Props) => {
+  const { value, ...restProps } = props;
+  return <InputElement value={value} {...restProps} />;
+};
 
 export default Input;

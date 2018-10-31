@@ -22,7 +22,12 @@ const MenuLink = styled(Link)`
   color: ${props => props.theme.text};
 `;
 
-const Header = ({ t }) => {
+interface Props {
+  t: Function;
+}
+
+const Header = (props: Props) => {
+  const { t } = props;
   return (
     <Menu>
       <MenuItem>

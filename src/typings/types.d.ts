@@ -10,6 +10,9 @@ interface City {
 
 interface Weather {
   city?: City;
+  cod: string;
+  message: number | string;
+  list?: Array<Forecast>;
 }
 
 interface Forecast {
@@ -19,12 +22,14 @@ interface Forecast {
     temp_min: number;
     temp_max: number;
   };
-  weather: any;
+  weather: Array<{
+    description: string;
+  }>;
 }
 
 interface Forecasts {
   loading: boolean;
-  weather: any;
+  weather: Weather;
 }
 
 type Bookmarks = Array<string>;
@@ -37,4 +42,20 @@ interface Settings {
   temperature: TemperatureSetting;
   language: LanguageSetting;
   theme: ThemeSetting;
+}
+
+// i18n
+declare type i18nT = (key: string, options?: Object) => string;
+
+// React router
+interface RouterProps {
+  match: {
+    params: {
+      location?: string;
+      date?: string;
+    };
+  };
+  history: {
+    push: Function;
+  };
 }

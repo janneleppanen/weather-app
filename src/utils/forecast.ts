@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 
 export const groupForecastsByDays = (forecasts: Array<Forecast>) => {
-  return forecasts.reduce((group, forecast): any => {
+  return forecasts.reduce((group, forecast): object => {
     const groupName = format(forecast.dt * 1000, "MM-DD-YYYY");
     if (!group.hasOwnProperty(groupName)) group[groupName] = [];
     group[groupName].push(forecast);

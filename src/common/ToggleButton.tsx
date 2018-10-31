@@ -5,10 +5,10 @@ import { rgba } from "polished";
 interface Props {
   label: string;
   checked: boolean;
-  onClick: Function;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const glow = (colorStart, colorEnd) => keyframes`
+const glow = (colorStart: string, colorEnd: string) => keyframes`
   from {
     box-shadow: 0 0 0 0 ${colorStart};
   }
@@ -17,7 +17,8 @@ const glow = (colorStart, colorEnd) => keyframes`
   }
 `;
 
-const Button = styled.button<any>`
+// const Button = styled<{ checked?: boolean }>().button`
+const Button = styled<{ checked: boolean }, "button">("button")`
   border: none;
   background: ${props => (props.checked ? props.theme.main : "transparent")};
   padding: 0.5rem 1.25rem;

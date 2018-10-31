@@ -11,20 +11,20 @@ interface Props {
 }
 
 const Bookmark = (props: Props) => {
-  function onChange(e: any) {
-    if (e.target.checked && props.onSelect) {
-      props.onSelect(e);
+  const { onSelect, onUnselect, checked, label } = props;
+  function onChange(e) {
+    if (e.target.checked && onSelect) {
+      onSelect(e);
     }
-    if (!e.target.checked && props.onUnselect) {
-      props.onUnselect(e);
+    if (!e.target.checked && onUnselect) {
+      onUnselect(e);
     }
   }
 
   return (
     <Container textAlignCenter>
       <label>
-        <input type="checkbox" onChange={onChange} checked={props.checked} />{" "}
-        {props.label}
+        <input type="checkbox" onChange={onChange} checked={checked} /> {label}
       </label>
     </Container>
   );

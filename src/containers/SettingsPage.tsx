@@ -16,7 +16,7 @@ interface Props {
   setTemperature: (TemperatureSetting) => void;
   setLanguage: (LanguageSetting) => void;
   setTheme: (ThemeSetting) => void;
-  t: any;
+  t: i18nT;
 }
 
 class SettingsPage extends React.Component<Props, {}> {
