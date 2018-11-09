@@ -1,11 +1,14 @@
-import reducer, { setTemperature, STATE } from "../../redux/SettingsReducer";
+import reducer, {
+  setTemperatureScale,
+  STATE
+} from "../../redux/SettingsReducer";
 
 it("action creator returns correct action", () => {
-  const action = { type: "SET_TEMPERATURE", payload: "celcius" };
-  expect(setTemperature("celcius")).toEqual(action);
+  const action = { type: "SET_TEMPERATURE_SCALE", payload: "celcius" };
+  expect(setTemperatureScale("celcius")).toEqual(action);
 });
 
-it("reduce a new state", () => {
-  const newState = reducer(STATE, setTemperature("fahrenheit"));
-  expect(newState.temperature).toBe("fahrenheit");
+it("reduces a new state", () => {
+  const newState = reducer(STATE, setTemperatureScale("fahrenheit"));
+  expect(newState.temperatureScale).toBe("fahrenheit");
 });

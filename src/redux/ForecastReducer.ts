@@ -7,15 +7,19 @@ export const GET_FORECAST = {
   SUCCESS: "GET_FORECAST_SUCCESS"
 };
 
-const STATE = {
+export const STATE = {
   loading: false,
   weather: {}
 };
 
-export const { getForecastRequest } = createActions({
+export const {
+  getForecastRequest,
+  getForecastError,
+  getForecastSuccess
+} = createActions({
   [GET_FORECAST.REQUEST]: (payload: string = "") => payload,
   [GET_FORECAST.ERROR]: (payload: string = "") => payload,
-  [GET_FORECAST.REQUEST]: (payload: string = "") => payload
+  [GET_FORECAST.SUCCESS]: (payload: string = "") => payload
 });
 
 const reducer = handleActions(

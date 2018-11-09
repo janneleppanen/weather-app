@@ -1,0 +1,267 @@
+{
+  "message": "accurate",
+  "cod": "200",
+  "count": 10,
+  "list": [
+    {
+      "id": 655195,
+      "name": "Jyväskylä",
+      "coord": { "lat": 62.25, "lon": 25.75 },
+      "main": {
+        "temp": 277.15,
+        "pressure": 1023,
+        "humidity": 93,
+        "temp_min": 277.15,
+        "temp_max": 277.15
+      },
+      "dt": 1541776800,
+      "wind": { "speed": 1.5, "deg": 130 },
+      "sys": { "country": "" },
+      "rain": null,
+      "snow": null,
+      "clouds": { "all": 90 },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04n"
+        }
+      ]
+    },
+    {
+      "id": 655194,
+      "name": "Jyvaeskylae",
+      "coord": { "lat": 62.2333, "lon": 25.7333 },
+      "main": {
+        "temp": 277.15,
+        "pressure": 1023,
+        "humidity": 93,
+        "temp_min": 277.15,
+        "temp_max": 277.15
+      },
+      "dt": 1541776800,
+      "wind": { "speed": 1.5, "deg": 130 },
+      "sys": { "country": "" },
+      "rain": null,
+      "snow": null,
+      "clouds": { "all": 90 },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04n"
+        }
+      ]
+    },
+    {
+      "id": 659233,
+      "name": "Halssila",
+      "coord": { "lat": 62.2433, "lon": 25.7925 },
+      "main": {
+        "temp": 277.15,
+        "pressure": 1023,
+        "humidity": 93,
+        "temp_min": 277.15,
+        "temp_max": 277.15
+      },
+      "dt": 1541776800,
+      "wind": { "speed": 1.5, "deg": 130 },
+      "sys": { "country": "" },
+      "rain": null,
+      "snow": null,
+      "clouds": { "all": 90 },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04n"
+        }
+      ]
+    },
+    {
+      "id": 6692025,
+      "name": "Halssilanrinne",
+      "coord": { "lat": 62.2458, "lon": 25.8061 },
+      "main": {
+        "temp": 277.15,
+        "pressure": 1023,
+        "humidity": 93,
+        "temp_min": 277.15,
+        "temp_max": 277.15
+      },
+      "dt": 1541776800,
+      "wind": { "speed": 1.5, "deg": 130 },
+      "sys": { "country": "" },
+      "rain": null,
+      "snow": null,
+      "clouds": { "all": 90 },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04n"
+        }
+      ]
+    },
+    {
+      "id": 653356,
+      "name": "Keljonkangas",
+      "coord": { "lat": 62.1926, "lon": 25.7147 },
+      "main": {
+        "temp": 277.15,
+        "pressure": 1023,
+        "humidity": 93,
+        "temp_min": 277.15,
+        "temp_max": 277.15
+      },
+      "dt": 1541776800,
+      "wind": { "speed": 1.5, "deg": 130 },
+      "sys": { "country": "" },
+      "rain": null,
+      "snow": null,
+      "clouds": { "all": 90 },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04n"
+        }
+      ]
+    },
+    {
+      "id": 637247,
+      "name": "Saeynaetsalo",
+      "coord": { "lat": 62.1333, "lon": 25.7667 },
+      "main": {
+        "temp": 277.15,
+        "pressure": 1023,
+        "humidity": 93,
+        "temp_min": 277.15,
+        "temp_max": 277.15
+      },
+      "dt": 1541776800,
+      "wind": { "speed": 1.5, "deg": 130 },
+      "sys": { "country": "" },
+      "rain": null,
+      "snow": null,
+      "clouds": { "all": 90 },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04n"
+        }
+      ]
+    },
+    {
+      "id": 645385,
+      "name": "Muurame",
+      "coord": { "lat": 62.1333, "lon": 25.6667 },
+      "main": {
+        "temp": 277.15,
+        "pressure": 1023,
+        "humidity": 93,
+        "temp_min": 277.15,
+        "temp_max": 277.15
+      },
+      "dt": 1541776800,
+      "wind": { "speed": 1.5, "deg": 130 },
+      "sys": { "country": "" },
+      "rain": null,
+      "snow": null,
+      "clouds": { "all": 90 },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04n"
+        }
+      ]
+    },
+    {
+      "id": 645386,
+      "name": "Muurame",
+      "coord": { "lat": 62.1333, "lon": 25.6667 },
+      "main": {
+        "temp": 277.15,
+        "pressure": 1023,
+        "humidity": 93,
+        "temp_min": 277.15,
+        "temp_max": 277.15
+      },
+      "dt": 1541776800,
+      "wind": { "speed": 1.5, "deg": 130 },
+      "sys": { "country": "" },
+      "rain": null,
+      "snow": null,
+      "clouds": { "all": 90 },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04n"
+        }
+      ]
+    },
+    {
+      "id": 7646561,
+      "name": "Nyppösenmutka",
+      "coord": { "lat": 62.4114, "lon": 25.6713 },
+      "main": {
+        "temp": 277.15,
+        "pressure": 1023,
+        "humidity": 93,
+        "temp_min": 277.15,
+        "temp_max": 277.15
+      },
+      "dt": 1541776800,
+      "wind": { "speed": 1.5, "deg": 130 },
+      "sys": { "country": "" },
+      "rain": null,
+      "snow": null,
+      "clouds": { "all": 90 },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04n"
+        }
+      ]
+    },
+    {
+      "id": 648738,
+      "name": "Laukaa",
+      "coord": { "lat": 62.4141, "lon": 25.9519 },
+      "main": {
+        "temp": 277.15,
+        "pressure": 1023,
+        "humidity": 93,
+        "temp_min": 277.15,
+        "temp_max": 277.15
+      },
+      "dt": 1541776800,
+      "wind": { "speed": 1.5, "deg": 130 },
+      "sys": { "country": "" },
+      "rain": null,
+      "snow": null,
+      "clouds": { "all": 90 },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04n"
+        }
+      ]
+    }
+  ]
+}
