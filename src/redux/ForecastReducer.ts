@@ -9,7 +9,7 @@ export const GET_FORECAST = {
 
 const STATE = {
   loading: false,
-  weather: undefined
+  weather: {}
 };
 
 export const { getForecastRequest } = createActions({
@@ -28,7 +28,7 @@ const reducer = handleActions(
     },
     [GET_FORECAST.SUCCESS]: (state, payload) => {
       state.loading = false;
-      state.weather = payload;
+      state.weather[payload.city.name] = payload;
     }
   },
   STATE

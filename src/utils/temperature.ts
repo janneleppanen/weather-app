@@ -1,4 +1,4 @@
-import { Temperatures } from "../config/constants";
+import { TemperatureScales } from "../config/constants";
 
 export const kelvinToCelcius = (kelvin: number) => {
   return kelvin - 273.15;
@@ -18,22 +18,22 @@ export const displayFahrenheitFromKelvin = (kelvin: number) => {
 
 export const displayTemperature = (
   kelvin: number,
-  temperatureScale: TemperatureSetting
+  temperatureScale: TemperatureScaleSetting
 ) => {
   const temperatureConvertMap = {
-    [Temperatures.fahrenheit]: displayFahrenheitFromKelvin,
-    [Temperatures.celcius]: displayCelciusFromKelvin
+    [TemperatureScales.fahrenheit]: displayFahrenheitFromKelvin,
+    [TemperatureScales.celcius]: displayCelciusFromKelvin
   };
   return temperatureConvertMap[temperatureScale](kelvin);
 };
 
 export const getConvertedTemperature = (
   kelvin: number,
-  temperatureScale: TemperatureSetting
+  temperatureScale: TemperatureScaleSetting
 ) => {
   const temperatureConvertMap = {
-    [Temperatures.fahrenheit]: kelvinToFahrenheit,
-    [Temperatures.celcius]: kelvinToCelcius
+    [TemperatureScales.fahrenheit]: kelvinToFahrenheit,
+    [TemperatureScales.celcius]: kelvinToCelcius
   };
   return temperatureConvertMap[temperatureScale](kelvin);
 };

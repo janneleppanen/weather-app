@@ -21,12 +21,11 @@ import { getForecastByCoords } from "../services/OpenWeatherMap";
 
 interface OwnProps {
   forecast: {
-    test: string;
     loading: boolean;
-    weather: Weather | null;
+    weather: Array<Weather> | null;
   };
   getForecastRequest: Function;
-  temperature: TemperatureSetting;
+  temperatureScale: TemperatureScaleSetting;
   addBookmark: Function;
   removeBookmark: Function;
   t: i18nT;
@@ -83,9 +82,10 @@ class App extends React.Component<Props & RouteProps, State> {
   };
 
   public render() {
-    const { addBookmark, removeBookmark, bookmarks, t } = this.props;
-    const { weather, loading } = this.props.forecast;
     const { location } = this.state;
+    const { addBookmark, removeBookmark, bookmarks, t } = this.props;
+    const { loading } = this.props.forecast;
+    const weather = this.props.forecast.weather[location];
 
     return (
       <Container>
@@ -139,16 +139,16 @@ class App extends React.Component<Props & RouteProps, State> {
   }
 
   renderWeather = () => {
-    const { weather } = this.props.forecast;
-    const temperature = this.props.temperature;
     const { location } = this.state;
+    const weather = this.props.forecast.weather[location];
+    const temperatureScale = this.props.temperatureScale;
 
     return (
       <MainForecastWrapper>
         <CurrentWeather
           location={weather.city.name}
           forecast={weather.list[0]}
-          temperatureScale={temperature}
+          temperatureScale={temperatureScale}
         />
 
         <ForecastDays
@@ -158,7 +158,7 @@ class App extends React.Component<Props & RouteProps, State> {
               <Forecast
                 date={format(key, "ddd")}
                 temperature={getForecastMax(item)}
-                temperatureScale={temperature}
+                temperatureScale={temperatureScale}
               />
             </Link>
           )}
@@ -171,7 +171,7 @@ class App extends React.Component<Props & RouteProps, State> {
 const mapStateToProps = ({ forecast, bookmarks, settings }) => ({
   forecast,
   bookmarks,
-  temperature: settings.temperature
+  temperatureScale: settings.temperatureScale
 });
 
 export default compose(

@@ -6,14 +6,14 @@ import { withNamespaces } from "react-i18next";
 
 import { Container, ToggleButton, FormGroup } from "../common";
 import * as actions from "../redux/SettingsReducer";
-import { Temperatures, Languages, Themes } from "../config/constants";
+import { TemperatureScales, Languages, Themes } from "../config/constants";
 import SubHeader from "../components/SubHeader";
 
 interface Props {
-  temperature: TemperatureSetting;
+  temperatureScale: TemperatureScaleSetting;
   language: LanguageSetting;
   theme: ThemeSetting;
-  setTemperature: (TemperatureSetting) => void;
+  setTemperatureScale: (TemperatureScaleSetting) => void;
   setLanguage: (LanguageSetting) => void;
   setTheme: (ThemeSetting) => void;
   t: i18nT;
@@ -22,10 +22,10 @@ interface Props {
 class SettingsPage extends React.Component<Props, {}> {
   render() {
     const {
-      temperature,
+      temperatureScale,
       language,
       theme,
-      setTemperature,
+      setTemperatureScale,
       setLanguage,
       setTheme,
       t
@@ -37,11 +37,11 @@ class SettingsPage extends React.Component<Props, {}> {
         <Container padded>
           <FormGroup>
             <h2>{t("settings.temperature")}</h2>
-            {_.map(Temperatures, (item, key) => (
+            {_.map(TemperatureScales, (item, key) => (
               <ToggleButton
                 key={key}
-                checked={item === temperature}
-                onClick={() => setTemperature(item)}
+                checked={item === temperatureScale}
+                onClick={() => setTemperatureScale(item)}
                 label={t(`settings.${key}`)}
               />
             ))}
@@ -77,7 +77,7 @@ class SettingsPage extends React.Component<Props, {}> {
 }
 
 const mapStateToProps = (state: GlobalState) => ({
-  temperature: state.settings.temperature,
+  temperatureScale: state.settings.temperatureScale,
   language: state.settings.language,
   theme: state.settings.theme
 });

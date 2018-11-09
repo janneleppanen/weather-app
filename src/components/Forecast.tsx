@@ -8,7 +8,7 @@ interface Props {
   temperatureMin?: number;
   temperatureMax?: number;
   date: string;
-  temperatureScale: TemperatureSetting;
+  temperatureScale: TemperatureScaleSetting;
 }
 
 const Wrapper = styled.div`
