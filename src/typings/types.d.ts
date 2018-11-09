@@ -29,17 +29,17 @@ interface Forecast {
 
 interface Forecasts {
   loading: boolean;
-  weather: Weather;
+  weather: Array<Weather>;
 }
 
 type Bookmarks = Array<string>;
 
-type TemperatureSetting = import("../config/constants").Temperatures;
+type TemperatureScaleSetting = import("../config/constants").TemperatureScales;
 type LanguageSetting = import("../config/constants").Languages;
 type ThemeSetting = import("../config/constants").Themes;
 
 interface Settings {
-  temperature: TemperatureSetting;
+  temperatureScale: TemperatureScaleSetting;
   language: LanguageSetting;
   theme: ThemeSetting;
 }

@@ -11,19 +11,15 @@ import {
 import RangeChart from "../components/RangeChart";
 
 interface OwnProps {
-  forecast: {
-    test: string;
-    loading: boolean;
-    weather: Weather;
-  };
-  temperatureScale: TemperatureSetting;
+  forecast: Weather;
+  temperatureScale: TemperatureScaleSetting;
 }
 
 type Props = OwnProps & RouterProps;
 
 class DetailsPage extends React.Component<Props> {
   render() {
-    const { weather } = this.props.forecast;
+    const weather = this.props.forecast;
     const { date } = this.props.match.params;
     const grouped = groupForecastsByDays(weather.list);
     const currentDayForecastList = grouped[date];
@@ -36,6 +32,7 @@ class DetailsPage extends React.Component<Props> {
         time: forecast.dt
       };
     });
+
     return (
       <Container>
         <RangeChart data={chartData} />
@@ -66,10 +63,12 @@ class DetailsPage extends React.Component<Props> {
   };
 }
 
-const mapStateToProps = (state: GlobalState) => {
+const mapStateToProps = (state: GlobalState, props) => {
+  const location = props.match.params.location;
+
   return {
-    forecast: state.forecast,
-    temperatureScale: state.settings.temperature
+    forecast: state.forecast.weather[location],
+    temperatureScale: state.settings.temperatureScale
   };
 };
 

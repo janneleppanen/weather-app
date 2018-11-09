@@ -1,4 +1,4 @@
-export enum Temperatures {
+export enum TemperatureScales {
   celcius = "Celcius",
   fahrenheit = "Fahrenheit"
 }

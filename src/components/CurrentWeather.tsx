@@ -7,7 +7,7 @@ import styled, { css } from "styled-components";
 interface Props {
   forecast: Forecast;
   location: String;
-  temperatureScale: TemperatureSetting;
+  temperatureScale: TemperatureScaleSetting;
 }
 
 const Wrapper = styled.div`

@@ -1,30 +1,32 @@
 import { createActions } from "redux-actions";
 
 import { handleActions } from "../utils/redux-helpers";
-import { Temperatures, Languages, Themes } from "../config/constants";
+import { TemperatureScales, Languages, Themes } from "../config/constants";
 
-export const SET_TEMPERATURE = "SET_TEMPERATURE";
+export const SET_TEMPERATURE_SCALE = "SET_TEMPERATURE_SCALE";
 export const SET_LANGUAGE = "SET_LANGUAGE";
 export const SET_THEME = "SET_THEME";
 
 type State = Settings;
 
 export const STATE = {
-  temperature: Object.keys(Temperatures).map(key => Temperatures[key])[0],
+  temperatureScale: Object.keys(TemperatureScales).map(
+    key => TemperatureScales[key]
+  )[0],
   language: Object.keys(Languages)[0],
   theme: Object.keys(Themes)[0]
 };
 
-export const { setTemperature, setLanguage, setTheme } = createActions({
-  [SET_TEMPERATURE]: (payload: TemperatureSetting) => payload,
+export const { setTemperatureScale, setLanguage, setTheme } = createActions({
+  [SET_TEMPERATURE_SCALE]: (payload: TemperatureScaleSetting) => payload,
   [SET_LANGUAGE]: (payload: LanguageSetting) => payload,
   [SET_THEME]: (payload: ThemeSetting) => payload
 });
 
 const reducer = handleActions(
   {
-    [SET_TEMPERATURE]: (state: State, payload) => {
-      state.temperature = payload;
+    [SET_TEMPERATURE_SCALE]: (state: State, payload) => {
+      state.temperatureScale = payload;
     },
     [SET_LANGUAGE]: (state: State, payload) => {
       state.language = payload;
