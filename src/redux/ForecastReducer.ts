@@ -24,13 +24,13 @@ export const {
 
 const reducer = handleActions(
   {
-    [GET_FORECAST.REQUEST]: (state, payload) => {
+    [GET_FORECAST.REQUEST]: (state: ForecastState, payload: string) => {
       state.loading = true;
     },
-    [GET_FORECAST.ERROR]: (state, payload) => {
+    [GET_FORECAST.ERROR]: (state: ForecastState, payload: string) => {
       state.loading = false;
     },
-    [GET_FORECAST.SUCCESS]: (state, payload) => {
+    [GET_FORECAST.SUCCESS]: (state: ForecastState, payload: Weather) => {
       state.loading = false;
       state.weather[payload.city.name] = payload;
     }

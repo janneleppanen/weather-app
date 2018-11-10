@@ -12,7 +12,7 @@ interface Props {
 
 const Bookmark = (props: Props) => {
   const { onSelect, onUnselect, checked, label } = props;
-  function onChange(e) {
+  function onChange(e: FormInputEventWithChecked) {
     if (e.target.checked && onSelect) {
       onSelect(e);
     }

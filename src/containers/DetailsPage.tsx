@@ -23,7 +23,7 @@ class DetailsPage extends React.Component<Props> {
     const { date } = this.props.match.params;
     const grouped = groupForecastsByDays(weather.list);
     const currentDayForecastList = grouped[date];
-    const chartData = currentDayForecastList.map(forecast => {
+    const chartData = currentDayForecastList.map((forecast: Forecast) => {
       return {
         temperature: getConvertedTemperature(
           forecast.main.temp,
@@ -41,7 +41,7 @@ class DetailsPage extends React.Component<Props> {
     );
   }
 
-  renderForecast = forecast => {
+  renderForecast = (forecast: Forecast) => {
     const { temperatureScale } = this.props;
     return (
       <div key={forecast.dt}>
@@ -63,7 +63,7 @@ class DetailsPage extends React.Component<Props> {
   };
 }
 
-const mapStateToProps = (state: GlobalState, props) => {
+const mapStateToProps = (state: GlobalState, props: Props) => {
   const location = props.match.params.location;
 
   return {

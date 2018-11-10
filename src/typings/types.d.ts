@@ -1,7 +1,7 @@
 interface GlobalState {
-  forecast: Forecasts;
-  bookmarks: Bookmarks;
-  settings: Settings;
+  forecast: ForecastState;
+  bookmarks: BookmarkState;
+  settings: SettingsState;
 }
 
 interface City {
@@ -17,31 +17,56 @@ interface Weather {
 
 interface Forecast {
   dt: number;
+  dt_txt: string;
   main: {
     temp: number;
     temp_min: number;
     temp_max: number;
+    humidity: number;
+  };
+  wind: {
+    speed: number;
+    deg: number;
+  };
+  rain?: {
+    "3h": number;
+  };
+  snow?: {
+    "3h": number;
+  };
+  clouds: {
+    all: 92;
   };
   weather: Array<{
     description: string;
   }>;
 }
 
-interface Forecasts {
+interface ForecastState {
   loading: boolean;
   weather: Array<Weather>;
 }
 
-type Bookmarks = Array<string>;
+type Bookmark = string;
+type BookmarkState = Array<Bookmarks>;
 
 type TemperatureScaleSetting = import("../config/constants").TemperatureScales;
 type LanguageSetting = import("../config/constants").Languages;
 type ThemeSetting = import("../config/constants").Themes;
 
-interface Settings {
+interface SettingsState {
   temperatureScale: TemperatureScaleSetting;
   language: LanguageSetting;
   theme: ThemeSetting;
+}
+
+type FormInputEventWithChecked = React.FormEvent<HTMLInputElement> & {
+  target: { checked: boolean };
+};
+
+interface Action {
+  type: string;
+  payload: unknown;
 }
 
 // i18n
