@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import { ReactComponent as ArrowIcon } from "../images/icons/arrow.svg";
 import { Container } from "../common";
 
 interface Props {
@@ -9,24 +10,45 @@ interface Props {
   title: string;
 }
 
-const Wrapper = styled.header`
-  background: ${props => props.theme.headerBackground};
-  border-bottom: ${props => props.theme.headerBorder};
+const Wrapper = styled.header``;
+
+const HeaderContainer = styled(Container)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Arrow = styled(ArrowIcon)`
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+  fill: currentColor;
+`;
+
+const Title = styled.h2`
+  flex: 1;
+  font-weight: normal;
+  margin: 0;
+  color: ${props => props.theme.text};
 `;
 
 const BackButton = styled(Link)`
-  padding: 0.5rem 1rem;
-  display: inline-block;
+  padding: 1rem 0.5rem;
+  display: flex;
   font-size: 1.25rem;
+  color: ${props => props.theme.main};
 `;
 
 const SubHeader = (props: Props) => {
   return (
     <Wrapper>
-      <Container>
-        <BackButton to={props.backTo}>&larr;</BackButton>
-        {props.title}
-      </Container>
+      <HeaderContainer>
+        <BackButton to={props.backTo}>
+          <Arrow />
+
+          <Title>{props.title}</Title>
+        </BackButton>
+      </HeaderContainer>
     </Wrapper>
   );
 };

@@ -9,6 +9,7 @@ import { Background } from "../common";
 import BookmarksPage from "../containers/BookmarksPage";
 import SettingsPage from "../containers/SettingsPage";
 import DetailsPage from "../containers/DetailsPage";
+import Header from "../components/Header";
 
 interface Props {
   theme: string;
@@ -21,6 +22,7 @@ const Routes = (props: Props) => {
       <Router>
         <Background>
           <GlobalStyles />
+          <Header />
           <Route exact path="/locations" component={App} />
           <Route exact path="/locations/:location" component={App} />
           <Route path="/locations/:location/:date" component={DetailsPage} />

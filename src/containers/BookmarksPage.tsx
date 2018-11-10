@@ -3,11 +3,25 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { withNamespaces } from "react-i18next";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
+import { ReactComponent as Drawing } from "../images/drawings/missed-chances.svg";
 import BookmarkLink from "../components/BookmarkLink";
 import SubHeader from "../components/SubHeader";
 import { Container, Notice } from "../common";
 import { displayTemperature } from "../utils/temperature";
+
+const DrawingContainer = styled.div`
+  max-width: 200px;
+  margin: 3rem auto 1rem auto;
+  opacity: 0.8;
+  ${props => props.theme.drawingEffect}
+`;
+
+const MissedChancesDrawing = styled(Drawing)`
+  max-width: 100%;
+  height: auto;
+`;
 
 interface Props {
   bookmarks: Array<Bookmark>;
@@ -25,18 +39,22 @@ class BookmarksPage extends React.Component<Props, {}> {
     return (
       <React.Fragment>
         <SubHeader backTo="/locations" title={t("bookmarks.title")} />
-        <Container padded>
-          {bookmarks.length === 0 ? (
+
+        {bookmarks.length === 0 ? (
+          <Container padded textAlignCenter>
             <Notice centerText>
               <p>{t("bookmarks.empty")}</p>
               <p>
                 <Link to="/">{t("bookmarks.search")}</Link>
               </p>
+              <DrawingContainer>
+                <MissedChancesDrawing />
+              </DrawingContainer>
             </Notice>
-          ) : (
-            this.renderBookmarkList(bookmarks)
-          )}
-        </Container>
+          </Container>
+        ) : (
+          <Container padded>{this.renderBookmarkList(bookmarks)}</Container>
+        )}
       </React.Fragment>
     );
   }

@@ -1,5 +1,5 @@
 import styledNormalize from "styled-normalize";
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, css } from "styled-components";
 
 export const lightTheme = {
   // Colors
@@ -10,15 +10,19 @@ export const lightTheme = {
   light: "#D9DCDD",
   lighter: "#EFF3F4",
   background: "white",
-  headerBackground: "whitesmoke",
   text: "#353c44",
   borderColor: "#ddd",
-  headerBorder: "1px solid #ccc",
+  headerBorder: "1px solid transparent",
+  headerBackground: "#ff6347",
+  headerText: "white",
 
   // Dimensions
   borderRadius: 3,
   space: 1,
-  maxWidth: 700
+  maxWidth: 700,
+
+  // Utils
+  drawingEffect: ""
 };
 
 export const darkTheme = {
@@ -30,15 +34,19 @@ export const darkTheme = {
   light: "#ddd",
   lighter: "#EFF3F4",
   background: "#353c44",
-  headerBackground: "#333",
   text: "#fff",
   borderColor: "#292d33",
-  headerBorder: "1px solid tomato",
+  headerBorder: "1px solid #ff6347",
+  headerBackground: "#ff6347",
+  headerText: "white",
 
   // Dimensions
   borderRadius: 3,
   space: 1,
-  maxWidth: 700
+  maxWidth: 700,
+
+  // Utils
+  drawingEffect: "filter: grayscale(100%)"
 };
 
 export const GlobalStyles = createGlobalStyle<any>`
@@ -68,7 +76,7 @@ export const GlobalStyles = createGlobalStyle<any>`
 
   h1, h2 {
     letter-spacing: -0.02em;
-    margin: 0 0 .5em 0;
+    margin: 0 0 1em 0;
   }
 
   h1 {
@@ -105,4 +113,17 @@ export const GlobalStyles = createGlobalStyle<any>`
     font-size:1.2em;
     z-index:999;
   }
+`;
+
+export const ScreenReaderText = css`
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
 `;
