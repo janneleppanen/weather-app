@@ -8,9 +8,9 @@ const Menu = styled.ul`
   margin: 0;
   padding: 0;
   display: flex;
-  position: absolute;
-  top: 0;
-  right: 1rem;
+  justify-content: flex-end;
+  background-color: ${props => props.theme.headerBackground};
+  color: white;
 `;
 
 const MenuItem = styled.li`
@@ -19,7 +19,7 @@ const MenuItem = styled.li`
 `;
 
 const MenuLink = styled(Link)`
-  color: ${props => props.theme.text};
+  color: ${props => props.theme.headerText};
 `;
 
 interface Props {

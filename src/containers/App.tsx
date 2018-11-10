@@ -6,18 +6,32 @@ import { compose } from "redux";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
+import styled from "styled-components";
 
 import MainForecastWrapper from "../components/MainForecastWrapper";
 import Bookmark from "../components/Bookmark";
-import Header from "../components/Header";
-import { Container, Input, Notice } from "../common";
+import { Container, Notice } from "../common";
 import Forecast from "../components/Forecast";
 import CurrentWeather from "../components/CurrentWeather";
 import ForecastDays from "../components/ForecastDays";
+import SearchField from "../components/SearchField";
 import { getForecastRequest } from "../redux/ForecastReducer";
 import { addBookmark, removeBookmark } from "../redux/BookmarkReducer";
 import { getForecastMax } from "../utils/forecast";
 import { getForecastByCoords } from "../services/OpenWeatherMap";
+import { ReactComponent as BalloonsDrawing } from "../images/drawings/balloons.svg";
+
+const DrawingContainer = styled.div`
+  margin: 4rem auto 1rem auto;
+  max-width: 200px;
+  opacity: 0.8;
+  ${props => props.theme.drawingEffect}
+`;
+
+const EmptyStateDrawing = styled(BalloonsDrawing)`
+  height: auto;
+  max-width: 100%;
+`;
 
 interface OwnProps {
   forecast: {
@@ -88,12 +102,23 @@ class App extends React.Component<Props & RouteProps, State> {
 
     return (
       <Container>
-        <Header />
         <h1 className="screen-reader-text">{t("main.title")}</h1>
+
         <label className="screen-reader-text" htmlFor="search">
           {t("common.enterLocation")}
         </label>
-        <Input
+
+        {weather !== undefined && (
+          <Bookmark
+            location={location}
+            label={t("common.remember")}
+            checked={bookmarks.includes(location)}
+            onSelect={() => addBookmark(location)}
+            onUnselect={() => removeBookmark(location)}
+          />
+        )}
+
+        <SearchField
           value={location}
           name="search"
           id="search"
@@ -105,21 +130,19 @@ class App extends React.Component<Props & RouteProps, State> {
 
         {loading && <Notice centerText>Loading...</Notice>}
 
-        <Bookmark
-          location={location}
-          label={t("common.remember")}
-          checked={bookmarks.includes(location)}
-          onSelect={() => addBookmark(location)}
-          onUnselect={() => removeBookmark(location)}
-        />
-
-        <Container textAlignCenter>
+        {/* <Container textAlignCenter>
           <p>
             <button onClick={this.updateForecastByLocation}>
               {t("common.geolocationButton")}
             </button>
           </p>
-        </Container>
+        </Container> */}
+
+        {weather === undefined && (
+          <DrawingContainer>
+            <EmptyStateDrawing />
+          </DrawingContainer>
+        )}
 
         {weather !== undefined && weather.cod !== "200" && !loading && (
           <Notice centerText type="error">
