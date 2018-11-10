@@ -7,7 +7,7 @@ export const SET_TEMPERATURE_SCALE = "SET_TEMPERATURE_SCALE";
 export const SET_LANGUAGE = "SET_LANGUAGE";
 export const SET_THEME = "SET_THEME";
 
-type State = Settings;
+type State = SettingsState;
 
 export const STATE = {
   temperatureScale: Object.keys(TemperatureScales).map(
@@ -25,13 +25,16 @@ export const { setTemperatureScale, setLanguage, setTheme } = createActions({
 
 const reducer = handleActions(
   {
-    [SET_TEMPERATURE_SCALE]: (state: State, payload) => {
+    [SET_TEMPERATURE_SCALE]: (
+      state: State,
+      payload: TemperatureScaleSetting
+    ) => {
       state.temperatureScale = payload;
     },
-    [SET_LANGUAGE]: (state: State, payload) => {
+    [SET_LANGUAGE]: (state: State, payload: LanguageSetting) => {
       state.language = payload;
     },
-    [SET_THEME]: (state: State, payload) => {
+    [SET_THEME]: (state: State, payload: ThemeSetting) => {
       state.theme = payload;
     }
   },

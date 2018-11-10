@@ -35,7 +35,7 @@ interface OwnProps {
 type Props = OwnProps & RouterProps;
 
 interface State {
-  weather: Weather | null;
+  weather?: Weather;
   loading: boolean;
   location: string;
 }
@@ -43,7 +43,6 @@ interface State {
 class App extends React.Component<Props & RouteProps, State> {
   state = {
     loading: true,
-    weather: null,
     location: ""
   };
 
@@ -56,7 +55,7 @@ class App extends React.Component<Props & RouteProps, State> {
     if (location) this.props.getForecastRequest(location);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     const { location } = this.props.match.params;
     if (location !== prevProps.match.params.location) {
       this.props.getForecastRequest(location);
@@ -151,7 +150,7 @@ class App extends React.Component<Props & RouteProps, State> {
 
         <ForecastDays
           forecasts={weather.list}
-          renderItem={(item, key) => (
+          renderItem={(item: Array<Forecast>, key: string) => (
             <Link to={`/locations/${location}/${key}`}>
               <Forecast
                 date={format(key, "ddd")}
@@ -166,7 +165,7 @@ class App extends React.Component<Props & RouteProps, State> {
   };
 }
 
-const mapStateToProps = ({ forecast, bookmarks, settings }) => ({
+const mapStateToProps = ({ forecast, bookmarks, settings }: GlobalState) => ({
   forecast,
   bookmarks,
   temperatureScale: settings.temperatureScale

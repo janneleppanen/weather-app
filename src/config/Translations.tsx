@@ -13,7 +13,7 @@ class Translations extends React.Component<Props> {
     i18n.changeLanguage(this.props.language);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     const { language } = this.props;
     if (language !== i18n.language) {
       i18n.changeLanguage(language);
@@ -25,7 +25,7 @@ class Translations extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ settings }) => ({
+const mapStateToProps = ({ settings }: GlobalState) => ({
   language: settings.language
 });
 

@@ -4,13 +4,23 @@ import { scaleBand, scaleLinear } from "@vx/scale";
 import { LinePath } from "@vx/shape";
 import { extent, max } from "d3-array";
 
-const RangeChart = props => {
+interface DataItem {
+  time: number;
+  temperature: number;
+}
+
+interface Props {
+  data: Array<DataItem>;
+  parentWidth: number;
+}
+
+const RangeChart = (props: Props) => {
   const xMax = props.parentWidth;
   const yMax = 200 / 8;
 
   const { data } = props;
-  const x = d => d.time;
-  const y = d => d.temperature;
+  const x = (d: DataItem) => d.time;
+  const y = (d: DataItem) => d.temperature;
 
   const xScale = scaleBand({
     rangeRound: [0, xMax],

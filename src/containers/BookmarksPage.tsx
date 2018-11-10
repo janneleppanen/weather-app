@@ -10,7 +10,7 @@ import { Container, Notice } from "../common";
 import { displayTemperature } from "../utils/temperature";
 
 interface Props {
-  bookmarks: Bookmarks;
+  bookmarks: Array<Bookmark>;
   forecast: {
     loading: boolean;
     weather: Array<Weather> | null;
@@ -41,7 +41,7 @@ class BookmarksPage extends React.Component<Props, {}> {
     );
   }
 
-  public renderBookmarkList(bookmarks: Bookmarks) {
+  public renderBookmarkList(bookmarks: Array<Bookmark>) {
     return (
       <div>
         {bookmarks.map((bookmark: string) => this.renderBookmark(bookmark))}
@@ -49,7 +49,7 @@ class BookmarksPage extends React.Component<Props, {}> {
     );
   }
 
-  renderBookmark = bookmark => {
+  renderBookmark = (bookmark: Bookmark) => {
     const forecast = this.props.forecast.weather[bookmark];
     const temperature = forecast.list[0].main.temp;
     const { temperatureScale } = this.props;
@@ -63,11 +63,11 @@ class BookmarksPage extends React.Component<Props, {}> {
   };
 }
 
-const mapStateToProps = ({
+const mapStateToProps = ({ bookmarks, forecast, settings }: GlobalState) => ({
   bookmarks,
   forecast,
-  settings: { temperature }
-}) => ({ bookmarks, forecast, temperatureScale: temperature });
+  temperatureScale: settings.temperatureScale
+});
 
 export default compose(
   withNamespaces(),

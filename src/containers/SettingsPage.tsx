@@ -13,9 +13,9 @@ interface Props {
   temperatureScale: TemperatureScaleSetting;
   language: LanguageSetting;
   theme: ThemeSetting;
-  setTemperatureScale: (TemperatureScaleSetting) => void;
-  setLanguage: (LanguageSetting) => void;
-  setTheme: (ThemeSetting) => void;
+  setTemperatureScale: (temperature: TemperatureScaleSetting) => void;
+  setLanguage: (language: LanguageSetting) => void;
+  setTheme: (theme: ThemeSetting) => void;
   t: i18nT;
 }
 
@@ -37,19 +37,22 @@ class SettingsPage extends React.Component<Props, {}> {
         <Container padded>
           <FormGroup>
             <h2>{t("settings.temperature")}</h2>
-            {_.map(TemperatureScales, (item, key) => (
-              <ToggleButton
-                key={key}
-                checked={item === temperatureScale}
-                onClick={() => setTemperatureScale(item)}
-                label={t(`settings.${key}`)}
-              />
-            ))}
+            {_.map(
+              TemperatureScales,
+              (item: TemperatureScaleSetting, key: string) => (
+                <ToggleButton
+                  key={key}
+                  checked={item === temperatureScale}
+                  onClick={() => setTemperatureScale(item)}
+                  label={t(`settings.${key}`)}
+                />
+              )
+            )}
           </FormGroup>
 
           <FormGroup>
             <h2>{t("settings.language")}</h2>
-            {_.map(Languages, (item, key) => (
+            {_.map(Languages, (item: LanguageSetting, key: LanguageSetting) => (
               <ToggleButton
                 key={key}
                 checked={item === language}
@@ -61,7 +64,7 @@ class SettingsPage extends React.Component<Props, {}> {
 
           <FormGroup>
             <h2>{t("settings.theme")}</h2>
-            {_.map(Themes, (item, key) => (
+            {_.map(Themes, (item: ThemeSetting, key: ThemeSetting) => (
               <ToggleButton
                 key={key}
                 checked={key === theme}

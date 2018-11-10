@@ -10,7 +10,11 @@ import BookmarksPage from "../containers/BookmarksPage";
 import SettingsPage from "../containers/SettingsPage";
 import DetailsPage from "../containers/DetailsPage";
 
-const Routes = props => {
+interface Props {
+  theme: string;
+}
+
+const Routes = (props: Props) => {
   const theme = props.theme === "light" ? lightTheme : darkTheme;
   return (
     <ThemeProvider theme={theme}>
@@ -29,7 +33,7 @@ const Routes = props => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: GlobalState) => ({
   theme: state.settings.theme
 });
 
