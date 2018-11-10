@@ -12,9 +12,9 @@ Create `.env.local` file at root folder with
 REACT_APP_OPEN_WEATHER_API_KEY=***
 ```
 
-First install depencies `yarn install`
+First install depencies `npm install`
 
-Run application `yarn start`
+Run application `npm start`
 
 # Stack
 
