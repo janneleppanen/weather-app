@@ -1,7 +1,8 @@
 import * as React from "react";
 import { RouteProps } from "react-router";
 import _ from "lodash";
-import { compose } from "lodash/fp";
+import { connect } from "react-redux";
+import { compose } from "redux";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
@@ -13,7 +14,6 @@ import { Container, Input, Notice } from "../common";
 import Forecast from "../components/Forecast";
 import CurrentWeather from "../components/CurrentWeather";
 import ForecastDays from "../components/ForecastDays";
-import { connect } from "react-redux";
 import { getForecastRequest } from "../redux/ForecastReducer";
 import { addBookmark, removeBookmark } from "../redux/BookmarkReducer";
 import { getForecastMax } from "../utils/forecast";
@@ -122,13 +122,11 @@ class App extends React.Component<Props & RouteProps, State> {
           </p>
         </Container>
 
-        {weather !== undefined &&
-          weather.cod !== "200" &&
-          !loading && (
-            <Notice centerText type="error">
-              {weather.message}
-            </Notice>
-          )}
+        {weather !== undefined && weather.cod !== "200" && !loading && (
+          <Notice centerText type="error">
+            {weather.message}
+          </Notice>
+        )}
 
         {weather !== undefined &&
           weather.cod === "200" &&

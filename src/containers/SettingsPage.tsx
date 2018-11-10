@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import _ from "lodash";
-import { compose } from "lodash/fp";
 import { withNamespaces } from "react-i18next";
 
 import { Container, ToggleButton, FormGroup } from "../common";
