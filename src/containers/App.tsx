@@ -7,6 +7,7 @@ import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
 import styled from "styled-components";
+import { Helmet } from "react-helmet";
 
 import MainForecastWrapper from "../components/MainForecastWrapper";
 import Bookmark from "../components/Bookmark";
@@ -19,6 +20,7 @@ import { getForecastRequest } from "../redux/ForecastReducer";
 import { addBookmark, removeBookmark } from "../redux/BookmarkReducer";
 import { getForecastMax } from "../utils/forecast";
 import { getForecastByCoords } from "../services/OpenWeatherMap";
+import { AppName } from "../config/constants";
 import { ReactComponent as BalloonsDrawing } from "../images/drawings/balloons.svg";
 
 const DrawingContainer = styled.div`
@@ -102,6 +104,14 @@ class App extends React.Component<Props & RouteProps, State> {
 
     return (
       <Container>
+        <Helmet>
+          {weather ? (
+            <title>Weather for {weather.city.name}</title>
+          ) : (
+            <title>{AppName}</title>
+          )}
+        </Helmet>
+
         <h1 className="screen-reader-text">{t("main.title")}</h1>
 
         <label className="screen-reader-text" htmlFor="search">
@@ -166,7 +176,7 @@ class App extends React.Component<Props & RouteProps, State> {
     return (
       <MainForecastWrapper>
         <CurrentWeather
-          location={weather.city.name}
+          location={`${weather.city.name}, ${weather.city.country}`}
           forecast={weather.list[0]}
           temperatureScale={temperatureScale}
         />

@@ -3,10 +3,16 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import _ from "lodash";
 import { withNamespaces } from "react-i18next";
+import { Helmet } from "react-helmet";
 
 import { Container, ToggleButton, FormGroup } from "../common";
 import * as actions from "../redux/SettingsReducer";
-import { TemperatureScales, Languages, Themes } from "../config/constants";
+import {
+  TemperatureScales,
+  Languages,
+  Themes,
+  AppName
+} from "../config/constants";
 import SubHeader from "../components/SubHeader";
 
 interface Props {
@@ -33,6 +39,11 @@ class SettingsPage extends React.Component<Props, {}> {
 
     return (
       <React.Fragment>
+        <Helmet>
+          <title>
+            {t("settings.title")} | {AppName}
+          </title>
+        </Helmet>
         <SubHeader backTo="/locations" title={t("settings.title")} />
         <Container padded>
           <FormGroup>
