@@ -10,3 +10,5 @@ export enum Themes {
   light = "Light",
   dark = "Dark"
 }
+
+export const AppName = "Weather";

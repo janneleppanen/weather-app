@@ -4,8 +4,10 @@ import { compose } from "redux";
 import { withNamespaces } from "react-i18next";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Helmet } from "react-helmet";
 
 import { ReactComponent as Drawing } from "../images/drawings/missed-chances.svg";
+import { AppName } from "../config/constants";
 import BookmarkLink from "../components/BookmarkLink";
 import SubHeader from "../components/SubHeader";
 import { Container, Notice } from "../common";
@@ -38,6 +40,12 @@ class BookmarksPage extends React.Component<Props, {}> {
     const { bookmarks, t } = this.props;
     return (
       <React.Fragment>
+        <Helmet>
+          <title>
+            {t("bookmarks.title")} | {AppName}
+          </title>
+        </Helmet>
+
         <SubHeader backTo="/locations" title={t("bookmarks.title")} />
 
         {bookmarks.length === 0 ? (
