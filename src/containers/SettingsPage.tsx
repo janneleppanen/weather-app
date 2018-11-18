@@ -5,7 +5,7 @@ import _ from "lodash";
 import { withNamespaces } from "react-i18next";
 import { Helmet } from "react-helmet";
 
-import { Container, ToggleButton, FormGroup } from "../common";
+import { Container, ToggleButton, FormGroup, AppContent } from "../common";
 import * as actions from "../redux/SettingsReducer";
 import {
   TemperatureScales,
@@ -38,7 +38,7 @@ class SettingsPage extends React.Component<Props, {}> {
     } = this.props;
 
     return (
-      <React.Fragment>
+      <AppContent>
         <Helmet>
           <title>
             {t("settings.title")} | {AppName}
@@ -85,7 +85,7 @@ class SettingsPage extends React.Component<Props, {}> {
             ))}
           </FormGroup>
         </Container>
-      </React.Fragment>
+      </AppContent>
     );
   }
 }

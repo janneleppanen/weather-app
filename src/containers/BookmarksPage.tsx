@@ -10,7 +10,7 @@ import { ReactComponent as Drawing } from "../images/drawings/missed-chances.svg
 import { AppName } from "../config/constants";
 import BookmarkLink from "../components/BookmarkLink";
 import SubHeader from "../components/SubHeader";
-import { Container, Notice } from "../common";
+import { Container, Notice, AppContent } from "../common";
 import { displayTemperature } from "../utils/temperature";
 
 const DrawingContainer = styled.div`
@@ -39,7 +39,7 @@ class BookmarksPage extends React.Component<Props, {}> {
   public render() {
     const { bookmarks, t } = this.props;
     return (
-      <React.Fragment>
+      <AppContent>
         <Helmet>
           <title>
             {t("bookmarks.title")} | {AppName}
@@ -63,7 +63,7 @@ class BookmarksPage extends React.Component<Props, {}> {
         ) : (
           <Container padded>{this.renderBookmarkList(bookmarks)}</Container>
         )}
-      </React.Fragment>
+      </AppContent>
     );
   }
 
