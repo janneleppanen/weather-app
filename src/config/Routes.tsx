@@ -1,15 +1,27 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { connect } from "react-redux";
 
 import { lightTheme, darkTheme, GlobalStyles } from "./global-styles";
-import App from "../containers/App";
 import { Background } from "../common";
-import BookmarksPage from "../containers/BookmarksPage";
-import SettingsPage from "../containers/SettingsPage";
-import DetailsPage from "../containers/DetailsPage";
 import Header from "../components/Header";
+
+const App = WaitingComponent(React.lazy(() => import("../containers/App")));
+const BookmarksPage = WaitingComponent(
+  React.lazy(() => import("../containers/BookmarksPage"))
+);
+const SettingsPage = WaitingComponent(
+  React.lazy(() => import("../containers/SettingsPage"))
+);
+const DetailsPage = WaitingComponent(
+  React.lazy(() => import("../containers/DetailsPage"))
+);
 
 interface Props {
   theme: string;
@@ -23,17 +35,29 @@ const Routes = (props: Props) => {
         <Background>
           <GlobalStyles />
           <Header />
-          <Route exact path="/locations" component={App} />
-          <Route exact path="/locations/:location" component={App} />
-          <Route path="/locations/:location/:date" component={DetailsPage} />
-          <Route exact path="/settings" component={SettingsPage} />
-          <Route exact path="/bookmarks" component={BookmarksPage} />
-          <Route exact path="/" render={() => <Redirect to="/locations" />} />
+          <Switch>
+            <Route exact path="/locations" component={App} />
+            <Route exact path="/locations/:location" component={App} />
+            <Route path="/locations/:location/:date" component={DetailsPage} />
+            <Route exact path="/settings" component={SettingsPage} />
+            <Route exact path="/bookmarks" component={BookmarksPage} />
+            <Route exact path="/" render={() => <Redirect to="/locations" />} />
+          </Switch>
         </Background>
       </Router>
     </ThemeProvider>
   );
 };
+
+function WaitingComponent(
+  Component: React.LazyExoticComponent<React.ComponentType>
+) {
+  return (props: JSX.IntrinsicAttributes) => (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <Component {...props} />
+    </React.Suspense>
+  );
+}
 
 const mapStateToProps = (state: GlobalState) => ({
   theme: state.settings.theme
