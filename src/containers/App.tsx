@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet";
 
 import MainForecastWrapper from "../components/MainForecastWrapper";
 import Bookmark from "../components/Bookmark";
-import { Container, Notice } from "../common";
+import { Container, Notice, AppContent } from "../common";
 import Forecast from "../components/Forecast";
 import CurrentWeather from "../components/CurrentWeather";
 import ForecastDays from "../components/ForecastDays";
@@ -103,44 +103,45 @@ class App extends React.Component<Props & RouteProps, State> {
     const weather = this.props.forecast.weather[location];
 
     return (
-      <Container>
-        <Helmet>
-          {weather ? (
-            <title>Weather for {weather.city.name}</title>
-          ) : (
-            <title>{AppName}</title>
+      <AppContent>
+        <Container>
+          <Helmet>
+            {weather ? (
+              <title>Weather for {weather.city.name}</title>
+            ) : (
+              <title>{AppName}</title>
+            )}
+          </Helmet>
+
+          <h1 className="screen-reader-text">{t("main.title")}</h1>
+
+          <label className="screen-reader-text" htmlFor="search">
+            {t("common.enterLocation")}
+          </label>
+
+          {weather !== undefined && (
+            <Bookmark
+              location={location}
+              label={t("common.remember")}
+              checked={bookmarks.includes(location)}
+              onSelect={() => addBookmark(location)}
+              onUnselect={() => removeBookmark(location)}
+            />
           )}
-        </Helmet>
 
-        <h1 className="screen-reader-text">{t("main.title")}</h1>
-
-        <label className="screen-reader-text" htmlFor="search">
-          {t("common.enterLocation")}
-        </label>
-
-        {weather !== undefined && (
-          <Bookmark
-            location={location}
-            label={t("common.remember")}
-            checked={bookmarks.includes(location)}
-            onSelect={() => addBookmark(location)}
-            onUnselect={() => removeBookmark(location)}
+          <SearchField
+            value={location}
+            name="search"
+            id="search"
+            onChange={e => this.setState({ location: e.target.value })}
+            onBlur={() => this.updateForecast()}
+            onKeyDown={e => e.key === "Enter" && this.updateForecast()}
+            placeholder={t("common.enterLocation")}
           />
-        )}
 
-        <SearchField
-          value={location}
-          name="search"
-          id="search"
-          onChange={e => this.setState({ location: e.target.value })}
-          onBlur={() => this.updateForecast()}
-          onKeyDown={e => e.key === "Enter" && this.updateForecast()}
-          placeholder={t("common.enterLocation")}
-        />
+          {loading && <Notice centerText>Loading...</Notice>}
 
-        {loading && <Notice centerText>Loading...</Notice>}
-
-        {/* <Container textAlignCenter>
+          {/* <Container textAlignCenter>
           <p>
             <button onClick={this.updateForecastByLocation}>
               {t("common.geolocationButton")}
@@ -148,23 +149,24 @@ class App extends React.Component<Props & RouteProps, State> {
           </p>
         </Container> */}
 
-        {weather === undefined && (
-          <DrawingContainer>
-            <EmptyStateDrawing />
-          </DrawingContainer>
-        )}
+          {weather === undefined && (
+            <DrawingContainer>
+              <EmptyStateDrawing />
+            </DrawingContainer>
+          )}
 
-        {weather !== undefined && weather.cod !== "200" && !loading && (
-          <Notice centerText type="error">
-            {weather.message}
-          </Notice>
-        )}
+          {weather !== undefined && weather.cod !== "200" && !loading && (
+            <Notice centerText type="error">
+              {weather.message}
+            </Notice>
+          )}
 
-        {weather !== undefined &&
-          weather.cod === "200" &&
-          !loading &&
-          this.renderWeather()}
-      </Container>
+          {weather !== undefined &&
+            weather.cod === "200" &&
+            !loading &&
+            this.renderWeather()}
+        </Container>
+      </AppContent>
     );
   }
 
