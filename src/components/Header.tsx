@@ -18,7 +18,10 @@ const iconStyles = css`
 `;
 
 const MenuWrapper = styled.header`
-  background-color: ${props => props.theme.headerBackground};
+  /* border-top: 5px solid ${props => props.theme.headerBackground}; */
+  position: absolute;
+  right: 0;
+  left: 0;
 `;
 
 const Menu = styled.ul`
@@ -31,12 +34,14 @@ const Menu = styled.ul`
 `;
 
 const MenuItem = styled.li`
+  position: relative;
+  z-index: 1;
   padding: 1rem 0.75rem;
   font-size: 0.875rem;
 `;
 
 const MenuLink = styled(Link)`
-  color: ${props => props.theme.headerText};
+  color: ${props => props.theme.main};
   display: flex;
   align-items: center;
 `;
