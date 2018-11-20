@@ -9,7 +9,7 @@ import { ThemeProvider } from "styled-components";
 import { connect } from "react-redux";
 
 import { lightTheme, darkTheme, GlobalStyles } from "./global-styles";
-import { Background } from "../common";
+import { Background, Loader } from "../common";
 import Header from "../components/Header";
 
 const App = WaitingComponent(React.lazy(() => import("../containers/App")));
@@ -53,7 +53,7 @@ function WaitingComponent(
   Component: React.LazyExoticComponent<React.ComponentType>
 ) {
   return (props: JSX.IntrinsicAttributes) => (
-    <React.Suspense fallback={<div>Loading...</div>}>
+    <React.Suspense fallback={<Loader />}>
       <Component {...props} />
     </React.Suspense>
   );

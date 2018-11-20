@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet";
 
 import MainForecastWrapper from "../components/MainForecastWrapper";
 import Bookmark from "../components/Bookmark";
-import { Container, Notice, AppContent } from "../common";
+import { Container, Notice, AppContent, Loader } from "../common";
 import Forecast from "../components/Forecast";
 import CurrentWeather from "../components/CurrentWeather";
 import ForecastDays from "../components/ForecastDays";
@@ -139,7 +139,7 @@ class App extends React.Component<Props & RouteProps, State> {
             placeholder={t("common.enterLocation")}
           />
 
-          {loading && <Notice centerText>Loading...</Notice>}
+          {loading && <Loader />}
 
           {/* <Container textAlignCenter>
           <p>
