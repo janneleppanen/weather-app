@@ -12,9 +12,6 @@ export const lightTheme = {
   background: "white",
   text: "#353c44",
   borderColor: "#ddd",
-  headerBorder: "1px solid transparent",
-  headerBackground: "#ff6347",
-  headerText: "white",
 
   // Dimensions
   borderRadius: 3,
@@ -36,9 +33,6 @@ export const darkTheme = {
   background: "#353c44",
   text: "#fff",
   borderColor: "#292d33",
-  headerBorder: "1px solid #ff6347",
-  headerBackground: "#ff6347",
-  headerText: "white",
 
   // Dimensions
   borderRadius: 3,
