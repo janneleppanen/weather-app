@@ -6,34 +6,21 @@ import { compose } from "redux";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
-import styled from "styled-components";
 import { Helmet } from "react-helmet";
 
 import MainForecastWrapper from "../components/MainForecastWrapper";
 import Bookmark from "../components/Bookmark";
-import { Container, Notice, AppContent, Loader } from "../common";
+import { Container, Notice, AppContent } from "../common";
 import Forecast from "../components/Forecast";
 import CurrentWeather from "../components/CurrentWeather";
 import ForecastDays from "../components/ForecastDays";
 import SearchField from "../components/SearchField";
+import MainIcon from "../components/MainIcon";
 import { getForecastRequest } from "../redux/ForecastReducer";
 import { addBookmark, removeBookmark } from "../redux/BookmarkReducer";
 import { getForecastMax } from "../utils/forecast";
 import { getForecastByCoords } from "../services/OpenWeatherMap";
 import { AppName } from "../config/constants";
-import { ReactComponent as BalloonsDrawing } from "../images/drawings/balloons.svg";
-
-const DrawingContainer = styled.div`
-  margin: 4rem auto 1rem auto;
-  max-width: 200px;
-  opacity: 0.8;
-  ${props => props.theme.drawingEffect}
-`;
-
-const EmptyStateDrawing = styled(BalloonsDrawing)`
-  height: auto;
-  max-width: 100%;
-`;
 
 interface OwnProps {
   forecast: {
@@ -100,7 +87,13 @@ class App extends React.Component<Props & RouteProps, State> {
     const { location } = this.state;
     const { addBookmark, removeBookmark, bookmarks, t } = this.props;
     const { loading } = this.props.forecast;
-    const weather = this.props.forecast.weather[location];
+
+    const weather = this.props.match.params.location
+      ? this.props.forecast.weather[this.props.match.params.location]
+      : null;
+
+    let mainIcon = loading ? "loading" : "empty";
+    mainIcon = weather ? weather.list[0].weather[0].main : mainIcon;
 
     return (
       <AppContent>
@@ -139,8 +132,6 @@ class App extends React.Component<Props & RouteProps, State> {
             placeholder={t("common.enterLocation")}
           />
 
-          {loading && <Loader />}
-
           {/* <Container textAlignCenter>
           <p>
             <button onClick={this.updateForecastByLocation}>
@@ -149,19 +140,26 @@ class App extends React.Component<Props & RouteProps, State> {
           </p>
         </Container> */}
 
+          <MainIcon icon={mainIcon} />
+          {/* {loading && <Loader />}
+
           {weather === undefined && (
             <DrawingContainer>
               <EmptyStateDrawing />
             </DrawingContainer>
-          )}
-
-          {weather !== undefined && weather.cod !== "200" && !loading && (
-            <Notice centerText type="error">
-              {weather.message}
-            </Notice>
-          )}
+          )} */}
+          {console.log(weather)}
+          {weather !== undefined &&
+            weather !== null &&
+            weather.cod !== "200" &&
+            !loading && (
+              <Notice centerText type="error">
+                {weather.message}
+              </Notice>
+            )}
 
           {weather !== undefined &&
+            weather !== null &&
             weather.cod === "200" &&
             !loading &&
             this.renderWeather()}
@@ -172,7 +170,9 @@ class App extends React.Component<Props & RouteProps, State> {
 
   renderWeather = () => {
     const { location } = this.state;
-    const weather = this.props.forecast.weather[location];
+    const weather = this.props.match.params.location
+      ? this.props.forecast.weather[this.props.match.params.location]
+      : null;
     const temperatureScale = this.props.temperatureScale;
 
     return (

@@ -27,7 +27,7 @@ const LoaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: ${fade} 1s 1s forwards;
+  animation: ${fade} 1s 0.5s forwards;
   opacity: 0;
 `;
 

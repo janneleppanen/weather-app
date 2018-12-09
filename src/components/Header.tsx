@@ -18,7 +18,6 @@ const iconStyles = css`
 `;
 
 const MenuWrapper = styled.header`
-  /* border-top: 5px solid ${props => props.theme.headerBackground}; */
   position: absolute;
   right: 0;
   left: 0;
