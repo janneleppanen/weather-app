@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { Helmet } from "react-helmet";
 
 import { Container } from "../common";
+import SubHeader from "../components/SubHeader";
 import { groupForecastsByDays } from "../utils/forecast";
 import { AppName } from "../config/constants";
 import {
@@ -27,11 +28,11 @@ class DetailsPage extends React.Component<Props> {
     const currentDayForecastList = grouped[date];
     const chartData = currentDayForecastList.map((forecast: Forecast) => {
       return {
-        temperature: getConvertedTemperature(
+        value: getConvertedTemperature(
           forecast.main.temp,
           this.props.temperatureScale
         ),
-        time: forecast.dt
+        date: new Date(forecast.dt * 1000)
       };
     });
     const dateDisplay = format(date, "Do MMM YYYY");
@@ -42,6 +43,12 @@ class DetailsPage extends React.Component<Props> {
             {weather.city.name} on {dateDisplay} | {AppName}
           </title>
         </Helmet>
+
+        <SubHeader
+          backTo="/locations"
+          title={`${weather.city.name}, ${dateDisplay}`}
+        />
+
         <RangeChart data={chartData} />
         {currentDayForecastList.map(this.renderForecast)}
       </Container>

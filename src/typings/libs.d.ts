@@ -1,6 +1,8 @@
 declare module "@vx/responsive";
 declare module "@vx/scale";
 declare module "@vx/shape";
+declare module "@vx/mock-data";
+declare module "@vx/group";
 
 declare module "react-redux";
 declare module "redux-actions";
