@@ -5,6 +5,16 @@ import { ReactComponent as StarIcon } from "../images/icons/star.svg";
 import { ReactComponent as StarOutlineIcon } from "../images/icons/star-outline.svg";
 import { ScreenReaderText } from "../config/global-styles";
 
+const Label = styled.label`
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const Checkbox = styled.input`
   ${ScreenReaderText}
 
@@ -30,13 +40,10 @@ const Bookmark = (props: Props) => {
   const Icon = checked ? StarIcon : StarOutlineIcon;
 
   const Star = styled(Icon)`
-    fill: ${props => props.theme.main};
-    max-width: 2rem;
+    fill: ${props => (checked ? props.theme.main : "#ccc")};
+    width: 2rem;
     border-radius: 50%;
     padding: 0.2rem;
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
   `;
 
   function onChange(e: FormInputEventWithChecked) {
@@ -49,10 +56,10 @@ const Bookmark = (props: Props) => {
   }
 
   return (
-    <label>
+    <Label>
       <Checkbox type="checkbox" onChange={onChange} checked={checked} />{" "}
       <Star />
-    </label>
+    </Label>
   );
 };
 

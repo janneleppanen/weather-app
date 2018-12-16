@@ -10,7 +10,7 @@ import { Container } from "../common";
 const iconStyles = css`
   width: 1.25rem;
   height: 1.25rem;
-  fill: currentColor;
+  fill: ${props => props.theme.main};
   transition: all 0.1s;
   &:hover {
     transform: scale(1.2);

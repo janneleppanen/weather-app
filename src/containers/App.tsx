@@ -7,6 +7,7 @@ import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
 import { Helmet } from "react-helmet";
+import styled from "styled-components";
 
 import MainForecastWrapper from "../components/MainForecastWrapper";
 import Bookmark from "../components/Bookmark";
@@ -21,6 +22,28 @@ import { addBookmark, removeBookmark } from "../redux/BookmarkReducer";
 import { getForecastMax } from "../utils/forecast";
 import { getForecastByCoords } from "../services/OpenWeatherMap";
 import { AppName } from "../config/constants";
+import { ReactComponent as MarkerSVG } from "../images/icons/marker.svg";
+
+const CurrentLocationButton = styled.button`
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1rem 0.75rem;
+  border: none;
+  background: transparent;
+  color: ${props => props.theme.main};
+  cursor: pointer;
+  transition: all 0.1s;
+  &:hover {
+    transform: scale(1.2);
+  }
+`;
+
+const MarkerIcon = styled(MarkerSVG)`
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+`;
 
 interface OwnProps {
   forecast: {
@@ -112,16 +135,6 @@ class App extends React.Component<Props & RouteProps, State> {
             {t("common.enterLocation")}
           </label>
 
-          {weather !== undefined && (
-            <Bookmark
-              location={location}
-              label={t("common.remember")}
-              checked={bookmarks.includes(location)}
-              onSelect={() => addBookmark(location)}
-              onUnselect={() => removeBookmark(location)}
-            />
-          )}
-
           <SearchField
             value={location}
             name="search"
@@ -130,15 +143,25 @@ class App extends React.Component<Props & RouteProps, State> {
             onBlur={() => this.updateForecast()}
             onKeyDown={e => e.key === "Enter" && this.updateForecast()}
             placeholder={t("common.enterLocation")}
+            contentBefore={() => {
+              if (weather !== undefined) {
+                return (
+                  <Bookmark
+                    location={location}
+                    label={t("common.remember")}
+                    checked={bookmarks.includes(location)}
+                    onSelect={() => addBookmark(location)}
+                    onUnselect={() => removeBookmark(location)}
+                  />
+                );
+              }
+              return null;
+            }}
           />
 
-          {/* <Container textAlignCenter>
-          <p>
-            <button onClick={this.updateForecastByLocation}>
-              {t("common.geolocationButton")}
-            </button>
-          </p>
-        </Container> */}
+          <CurrentLocationButton onClick={this.updateForecastByLocation}>
+            <MarkerIcon />
+          </CurrentLocationButton>
 
           <MainIcon icon={mainIcon} />
           {/* {loading && <Loader />}
