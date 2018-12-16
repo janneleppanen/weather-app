@@ -6,3 +6,4 @@ export { default as Notice } from "./Notice";
 export { default as ToggleButton } from "./ToggleButton";
 export { default as FormGroup } from "./FormGroup";
 export { default as Loader } from "./Loader";
+export { default as RemoveButton } from "./RemoveButton";

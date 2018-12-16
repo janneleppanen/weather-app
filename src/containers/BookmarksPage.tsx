@@ -10,8 +10,9 @@ import { ReactComponent as Drawing } from "../images/drawings/missed-chances.svg
 import { AppName } from "../config/constants";
 import BookmarkLink from "../components/BookmarkLink";
 import SubHeader from "../components/SubHeader";
-import { Container, Notice, AppContent } from "../common";
+import { Container, Notice, AppContent, RemoveButton } from "../common";
 import { displayTemperature } from "../utils/temperature";
+import { removeBookmark } from "../redux/BookmarkReducer";
 
 const DrawingContainer = styled.div`
   max-width: 200px;
@@ -25,6 +26,22 @@ const MissedChancesDrawing = styled(Drawing)`
   height: auto;
 `;
 
+const BookmarkList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+
+const BookmarkListItem = styled.li`
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid ${props => props.theme.borderColor};
+`;
+
+const BookmarkListLink = styled(BookmarkLink)`
+  flex: 1;
+`;
+
 interface Props {
   bookmarks: Array<Bookmark>;
   forecast: {
@@ -33,6 +50,7 @@ interface Props {
   };
   temperatureScale: TemperatureScaleSetting;
   t: i18nT;
+  removeBookmark: Function;
 }
 
 class BookmarksPage extends React.Component<Props, {}> {
@@ -69,22 +87,31 @@ class BookmarksPage extends React.Component<Props, {}> {
 
   public renderBookmarkList(bookmarks: Array<Bookmark>) {
     return (
-      <div>
+      <BookmarkList>
         {bookmarks.map((bookmark: string) => this.renderBookmark(bookmark))}
-      </div>
+      </BookmarkList>
     );
   }
 
   renderBookmark = (bookmark: Bookmark) => {
     const forecast = this.props.forecast.weather[bookmark];
-    const temperature = forecast.list[0].main.temp;
+    const temperature = forecast ? forecast.list[0].main.temp : null;
     const { temperatureScale } = this.props;
 
     return (
-      <BookmarkLink key={bookmark} to={`/locations/${bookmark}`}>
-        {bookmark}{" "}
-        <small>{displayTemperature(temperature, temperatureScale)}</small>
-      </BookmarkLink>
+      <BookmarkListItem key={bookmark}>
+        <BookmarkListLink to={`/locations/${bookmark}`}>
+          {bookmark}{" "}
+          {temperature && (
+            <small>{displayTemperature(temperature, temperatureScale)}</small>
+          )}
+        </BookmarkListLink>
+        <RemoveButton
+          onClick={() => {
+            this.props.removeBookmark(bookmark);
+          }}
+        />
+      </BookmarkListItem>
     );
   };
 }
@@ -97,5 +124,8 @@ const mapStateToProps = ({ bookmarks, forecast, settings }: GlobalState) => ({
 
 export default compose(
   withNamespaces(),
-  connect(mapStateToProps)
+  connect(
+    mapStateToProps,
+    { removeBookmark }
+  )
 )(BookmarksPage);

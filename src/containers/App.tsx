@@ -117,7 +117,6 @@ class App extends React.Component<Props & RouteProps, State> {
 
     let mainIcon = loading ? "loading" : "empty";
     mainIcon = weather ? weather.list[0].weather[0].main : mainIcon;
-
     return (
       <AppContent>
         <Container>
@@ -144,7 +143,7 @@ class App extends React.Component<Props & RouteProps, State> {
             onKeyDown={e => e.key === "Enter" && this.updateForecast()}
             placeholder={t("common.enterLocation")}
             contentBefore={() => {
-              if (weather !== undefined) {
+              if (location) {
                 return (
                   <Bookmark
                     location={location}
@@ -171,7 +170,7 @@ class App extends React.Component<Props & RouteProps, State> {
               <EmptyStateDrawing />
             </DrawingContainer>
           )} */}
-          {console.log(weather)}
+
           {weather !== undefined &&
             weather !== null &&
             weather.cod !== "200" &&
