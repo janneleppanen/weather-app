@@ -7,8 +7,8 @@ interface Props {
 
 const Notice = styled.div<Props>`
   margin: 1rem 0;
-  color: ${props => props.theme.text}
-    ${props => props.centerText && "text-align: center"};
+  color: ${props => props.theme.text};
+  ${props => props.centerText && "text-align: center"};
 `;
 
 export default Notice;
