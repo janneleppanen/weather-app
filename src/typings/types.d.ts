@@ -2,6 +2,7 @@ interface GlobalState {
   forecast: ForecastState;
   bookmarks: BookmarkState;
   settings: SettingsState;
+  lastLocation: LastLocationState;
 }
 
 interface City {
@@ -49,6 +50,8 @@ interface ForecastState {
 
 type Bookmark = string;
 type BookmarkState = Array<Bookmarks>;
+
+type LastLocationState = string | undefined;
 
 type TemperatureScaleSetting = import("../config/constants").TemperatureScales;
 type LanguageSetting = import("../config/constants").Languages;

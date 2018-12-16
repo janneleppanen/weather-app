@@ -6,5 +6,5 @@ export const handleActions = (actionsMap: object, defaultState: unknown) => (
 ) =>
   produce(state, draft => {
     const action = actionsMap[type];
-    action && action(draft, payload);
+    return action && action(draft, payload);
   });
