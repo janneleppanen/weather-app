@@ -19,6 +19,7 @@ import SearchField from "../components/SearchField";
 import MainIcon from "../components/MainIcon";
 import { getForecastRequest } from "../redux/ForecastReducer";
 import { addBookmark, removeBookmark } from "../redux/BookmarkReducer";
+import { setLastLocation } from "../redux/LastLocationReducer";
 import { getForecastMax } from "../utils/forecast";
 import { getForecastByCoords } from "../services/OpenWeatherMap";
 import { AppName } from "../config/constants";
@@ -54,8 +55,10 @@ interface OwnProps {
   temperatureScale: TemperatureScaleSetting;
   addBookmark: Function;
   removeBookmark: Function;
+  setLastLocation: Function;
   t: i18nT;
   bookmarks: Array<string>;
+  lastLocation: string;
 }
 
 type Props = OwnProps & RouterProps;
@@ -77,6 +80,9 @@ class App extends React.Component<Props & RouteProps, State> {
     if (this.props.match.params.hasOwnProperty("location")) {
       location = this.props.match.params.location;
       this.setState({ location });
+    } else if (this.props.lastLocation) {
+      this.props.history.push(`/locations/${this.props.lastLocation}`);
+      this.setState({ location: this.props.lastLocation });
     }
     if (location) this.props.getForecastRequest(location);
   }
@@ -85,6 +91,7 @@ class App extends React.Component<Props & RouteProps, State> {
     const { location } = this.props.match.params;
     if (location !== prevProps.match.params.location) {
       this.props.getForecastRequest(location);
+      this.props.setLastLocation(location);
     }
   }
 
@@ -222,16 +229,22 @@ class App extends React.Component<Props & RouteProps, State> {
   };
 }
 
-const mapStateToProps = ({ forecast, bookmarks, settings }: GlobalState) => ({
+const mapStateToProps = ({
   forecast,
   bookmarks,
-  temperatureScale: settings.temperatureScale
+  settings,
+  lastLocation
+}: GlobalState) => ({
+  forecast,
+  bookmarks,
+  temperatureScale: settings.temperatureScale,
+  lastLocation
 });
 
 export default compose(
   withNamespaces(),
   connect(
     mapStateToProps,
-    { getForecastRequest, addBookmark, removeBookmark }
+    { getForecastRequest, addBookmark, removeBookmark, setLastLocation }
   )
 )(App);

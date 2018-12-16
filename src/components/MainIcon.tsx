@@ -7,6 +7,7 @@ import { ReactComponent as BalloonsDrawing } from "../images/drawings/balloons.s
 import { ReactComponent as RainSVG } from "../images/icons/rain.svg";
 import { ReactComponent as ClearSVG } from "../images/icons/clear.svg";
 import { ReactComponent as SnowSVG } from "../images/icons/snow.svg";
+import { ReactComponent as CloudSVG } from "../images/icons/cloud.svg";
 
 const MainIconWrapper = styled.div`
   height: 30vh;
@@ -68,6 +69,10 @@ const SnowIcon = styled(SnowSVG)`
   ${iconSyles}
 `;
 
+const CloudsIcon = styled(CloudSVG)`
+  ${iconSyles}
+`;
+
 const DrawingContainer = styled.div`
   margin: 1rem auto;
   max-width: 200px;
@@ -86,7 +91,7 @@ interface Props {
 
 const MainIcon = (props: Props) => {
   const { icon } = props;
-  console.log(icon);
+
   if (icon === "loading") {
     return <Loader />;
   }
@@ -101,6 +106,10 @@ const MainIcon = (props: Props) => {
 
   if (icon === "Clear") {
     return <ClearIcon />;
+  }
+
+  if (icon === "Clouds") {
+    return <CloudsIcon />;
   }
 
   if (icon === "empty") {
