@@ -172,8 +172,6 @@ class Main extends React.Component<Props & RouteProps, State> {
             }}
           />
 
-          {weather && weather.cod === "200" && <MainIcon icon={mainIcon} />}
-
           {weather !== undefined &&
             weather !== null &&
             weather.cod !== "200" &&
@@ -182,6 +180,8 @@ class Main extends React.Component<Props & RouteProps, State> {
                 {weather.message}
               </Notice>
             )}
+
+          {<MainIcon icon={mainIcon} />}
 
           {weather !== undefined &&
             weather !== null &&
