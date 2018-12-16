@@ -147,7 +147,7 @@ class App extends React.Component<Props & RouteProps, State> {
             id="search"
             onChange={e => this.setState({ location: e.target.value })}
             onBlur={() => this.updateForecast()}
-            onKeyDown={e => e.key === "Enter" && this.updateForecast()}
+            onKeyDown={e => e.key === "Enter" && e.currentTarget.blur()}
             placeholder={t("common.enterLocation")}
             contentBefore={() => {
               if (location) {
