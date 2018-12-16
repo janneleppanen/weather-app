@@ -10,7 +10,10 @@ function* fetchForecast(action: Action) {
       OpenWeatherMapAPI.getForecast,
       action.payload
     );
-    yield put({ type: GET_FORECAST.SUCCESS, payload: forecast });
+    yield put({
+      type: GET_FORECAST.SUCCESS,
+      payload: { weather: forecast, name: action.payload }
+    });
   } catch (e) {
     yield put({ type: GET_FORECAST.ERROR, payload: "No go" });
   }

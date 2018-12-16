@@ -123,13 +123,14 @@ class App extends React.Component<Props & RouteProps, State> {
       : null;
 
     let mainIcon = loading ? "loading" : "empty";
-    mainIcon = weather ? weather.list[0].weather[0].main : mainIcon;
+    mainIcon =
+      weather && weather.list ? weather.list[0].weather[0].main : mainIcon;
     return (
       <AppContent>
         <Container>
           <Helmet>
-            {weather ? (
-              <title>Weather for {weather.city.name}</title>
+            {this.props.lastLocation ? (
+              <title>Weather for {this.props.lastLocation}</title>
             ) : (
               <title>{AppName}</title>
             )}
@@ -169,14 +170,7 @@ class App extends React.Component<Props & RouteProps, State> {
             <MarkerIcon />
           </CurrentLocationButton>
 
-          <MainIcon icon={mainIcon} />
-          {/* {loading && <Loader />}
-
-          {weather === undefined && (
-            <DrawingContainer>
-              <EmptyStateDrawing />
-            </DrawingContainer>
-          )} */}
+          {weather && weather.cod === "200" && <MainIcon icon={mainIcon} />}
 
           {weather !== undefined &&
             weather !== null &&
