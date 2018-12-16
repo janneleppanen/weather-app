@@ -1,10 +1,12 @@
 import * as React from "react";
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { Transition } from "react-spring";
 
 import { Loader } from "../common";
 import { ReactComponent as BalloonsDrawing } from "../images/drawings/balloons.svg";
 import { ReactComponent as RainSVG } from "../images/icons/rain.svg";
+import { ReactComponent as ClearSVG } from "../images/icons/clear.svg";
+import { ReactComponent as SnowSVG } from "../images/icons/snow.svg";
 
 const MainIconWrapper = styled.div`
   height: 30vh;
@@ -14,10 +16,56 @@ const MainIconWrapper = styled.div`
   margin: 1rem;
   color: tomato;
 `;
+const iconAnimation = keyframes`
+  0% {
+    top: 0;
+    transform: rotate(6deg);
+  }
+
+  16% {
+    top: 1rem;
+  }
+
+  32% {
+    top: 0;
+  }
+
+  50% {
+    top: 1rem;
+    transform: rotate(-6deg);
+  }
+
+  66% {
+    top: 0;
+  }
+
+  82% {
+    top: 1rem;
+  }
+
+  100% {
+    top: 0;
+    transform: rotate(6deg);
+  }
+`;
+
+const iconSyles = css`
+  position: relative;
+  fill: currentColor;
+  width: 160px;
+  animation: ${iconAnimation} 15s ease-in-out infinite;
+`;
 
 const RainIcon = styled(RainSVG)`
-  fill: currentColor;
-  width: 200px;
+  ${iconSyles}
+`;
+
+const ClearIcon = styled(ClearSVG)`
+  ${iconSyles}
+`;
+
+const SnowIcon = styled(SnowSVG)`
+  ${iconSyles}
 `;
 
 const DrawingContainer = styled.div`
@@ -38,13 +86,21 @@ interface Props {
 
 const MainIcon = (props: Props) => {
   const { icon } = props;
-
+  console.log(icon);
   if (icon === "loading") {
     return <Loader />;
   }
 
   if (icon === "Rain") {
     return <RainIcon />;
+  }
+
+  if (icon === "Snow") {
+    return <SnowIcon />;
+  }
+
+  if (icon === "Clear") {
+    return <ClearIcon />;
   }
 
   if (icon === "empty") {
