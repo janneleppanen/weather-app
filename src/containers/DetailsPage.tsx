@@ -1,7 +1,10 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import { format } from "date-fns";
 import { Helmet } from "react-helmet";
+import styled from "styled-components";
+import { withNamespaces } from "react-i18next";
 
 import { Container } from "../common";
 import SubHeader from "../components/SubHeader";
@@ -13,9 +16,34 @@ import {
 } from "../utils/temperature";
 import RangeChart from "../components/RangeChart";
 
+const DetailsList = styled.div`
+  margin: 1rem;
+`;
+
+const DetailsListItem = styled.div`
+  border-bottom: 1px solid ${props => props.theme.borderColor};
+  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const DetailsListItemTitle = styled.h2`
+  width: 100%;
+`;
+
+const Detail = styled.div`
+  width: 50%;
+  margin-bottom: 1rem;
+`;
+
+const DetailTitle = styled.div`
+  font-weight: bold;
+`;
+
 interface OwnProps {
   forecast: Weather;
   temperatureScale: TemperatureScaleSetting;
+  t: i18nT;
 }
 
 type Props = OwnProps & RouterProps;
@@ -50,29 +78,55 @@ class DetailsPage extends React.Component<Props> {
         />
 
         <RangeChart data={chartData} />
-        {currentDayForecastList.map(this.renderForecast)}
+
+        <DetailsList>
+          {currentDayForecastList.map(this.renderForecast)}
+        </DetailsList>
       </Container>
     );
   }
 
   renderForecast = (forecast: Forecast) => {
-    const { temperatureScale } = this.props;
+    const { temperatureScale, t } = this.props;
     return (
-      <div key={forecast.dt}>
-        <p>Date: {format(forecast.dt_txt, "D.M.YYYY HH:mm")}</p>
-        <p>
-          Temp: {displayTemperature(forecast.main.temp, temperatureScale)} |{" "}
+      <DetailsListItem key={forecast.dt}>
+        <DetailsListItemTitle>
+          {format(forecast.dt_txt, "D.M.YYYY HH:mm")} –{" "}
+          {forecast.weather[0].description}
+        </DetailsListItemTitle>
+        <Detail>
+          <DetailTitle>{t("details.temperature")}</DetailTitle>
           {displayTemperature(forecast.main.temp_max, temperatureScale)} /{" "}
           {displayTemperature(forecast.main.temp_min, temperatureScale)}
-        </p>
-        <p>Humidity: {forecast.main.humidity}</p>
-        <p>{forecast.weather[0].description}</p>
-        <p>Wind speed: {forecast.wind.speed}</p>
-        {forecast.snow && <p>Snow: {forecast.snow["3h"]}</p>}
-        {forecast.rain && <p>Rain: {forecast.rain["3h"]}</p>}
-        <p>Clouds: {forecast.clouds.all}</p>
-        <hr />
-      </div>
+        </Detail>
+        <Detail>
+          <DetailTitle>{t("details.humidity")}</DetailTitle>
+          {forecast.main.humidity}%
+        </Detail>
+        <Detail>
+          <DetailTitle>{t("details.windSpeed")}</DetailTitle>
+          {forecast.wind.speed} m/s
+        </Detail>
+
+        {forecast.snow && (
+          <Detail>
+            <DetailTitle>{t("details.snow")}</DetailTitle>
+            {forecast.snow["3h"]}
+          </Detail>
+        )}
+
+        {forecast.rain && (
+          <Detail>
+            <DetailTitle>{t("details.rain")}</DetailTitle>
+            {forecast.rain["3h"]}
+          </Detail>
+        )}
+
+        <Detail>
+          <DetailTitle>{t("details.clouds")}</DetailTitle>
+          {forecast.clouds.all}
+        </Detail>
+      </DetailsListItem>
     );
   };
 }
@@ -86,4 +140,7 @@ const mapStateToProps = (state: GlobalState, props: Props) => {
   };
 };
 
-export default connect(mapStateToProps)(DetailsPage);
+export default compose(
+  withNamespaces(),
+  connect(mapStateToProps)
+)(DetailsPage);

@@ -4,6 +4,10 @@
     "remember": "Remember this"
   },
 
+  "head": {
+    "weatherFor": "Weather for"
+  },
+
   "main": {
     "title": "Search forecasts"
   },
@@ -31,5 +35,14 @@
     "theme": "Theme",
     "light": "Light",
     "dark": "Dark"
+  },
+
+  "details": {
+    "temperature": "Temperature",
+    "humidity": "Humidity",
+    "windSpeed": "Wind speed",
+    "snow": "Snow",
+    "rain": "Rain",
+    "clouds": "Clouds"
   }
 }

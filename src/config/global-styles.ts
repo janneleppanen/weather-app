@@ -93,19 +93,20 @@ export const GlobalStyles = createGlobalStyle<any>`
   }
   a.skip-main:focus, a.skip-main:active {
     color: #fff;
-    background-color:#000;
+    background-color: ${props => props.theme.main};
     left: auto;
     top: auto;
     width: 30%;
     height: auto;
-    overflow:auto;
-    margin: 10px 35%;
-    padding:5px;
-    border-radius: 15px;
-    border:4px solid yellow;
-    text-align:center;
-    font-size:1.2em;
-    z-index:999;
+    overflow: auto;
+    padding: .25rem;
+    text-align: center;
+    font-size: 1rem;
+    z-index: 999;
+  }
+
+  *:focus {
+    outline: 1px dashed ${props => props.theme.main};
   }
 `;
 

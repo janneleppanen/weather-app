@@ -12,7 +12,7 @@ import { lightTheme, darkTheme, GlobalStyles } from "./global-styles";
 import { Background, Loader } from "../common";
 import Header from "../components/Header";
 
-const App = WaitingComponent(React.lazy(() => import("../containers/App")));
+const Main = WaitingComponent(React.lazy(() => import("../containers/Main")));
 const BookmarksPage = WaitingComponent(
   React.lazy(() => import("../containers/BookmarksPage"))
 );
@@ -36,8 +36,8 @@ const Routes = (props: Props) => {
           <GlobalStyles />
           <Header />
           <Switch>
-            <Route exact path="/locations" component={App} />
-            <Route exact path="/locations/:location" component={App} />
+            <Route exact path="/locations" component={Main} />
+            <Route exact path="/locations/:location" component={Main} />
             <Route path="/locations/:location/:date" component={DetailsPage} />
             <Route exact path="/settings" component={SettingsPage} />
             <Route exact path="/bookmarks" component={BookmarksPage} />
