@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import { ReactComponent as SearchIconComponent } from "../images/icons/search.svg";
+import { ReactComponent as SearchSVG } from "../images/icons/search.svg";
 
 const Wrapper = styled.div`
   position: relative;
@@ -47,21 +47,23 @@ const SubmitButton = styled.button`
   }
 `;
 
-const SearchIcon = styled(SearchIconComponent)`
+const SearchIcon = styled(SearchSVG)`
   fill: currentColor;
-  width: 2rem;
-  height: 2rem;
+  width: 1.75rem;
+  height: 1.75rem;
   transition: all 0.1s;
 `;
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   value: string;
+  contentBefore: Function;
 }
 
 const SearchField = (props: Props) => {
-  const { value, ...restProps } = props;
+  const { value, contentBefore, ...restProps } = props;
   return (
     <Wrapper>
+      {contentBefore()}
       <InputElement value={value} {...restProps} />
       <SubmitButton>
         <SearchIcon />
