@@ -10,6 +10,9 @@ const WeatherData = {
 };
 
 it("sets forecast to state", () => {
-  const newState = reducer(STATE, getForecastSuccess(WeatherData));
+  const newState = reducer(
+    STATE,
+    getForecastSuccess({ weather: WeatherData, name: "Helsinki" })
+  );
   expect(newState.weather[WeatherData.city.name]).toBe(WeatherData);
 });

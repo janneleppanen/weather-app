@@ -56,14 +56,14 @@ const SearchIcon = styled(SearchSVG)`
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   value: string;
-  contentBefore: Function;
+  contentBefore?: Function;
 }
 
 const SearchField = (props: Props) => {
   const { value, contentBefore, ...restProps } = props;
   return (
     <Wrapper>
-      {contentBefore()}
+      {contentBefore && contentBefore()}
       <InputElement value={value} {...restProps} />
       <SubmitButton>
         <SearchIcon />
