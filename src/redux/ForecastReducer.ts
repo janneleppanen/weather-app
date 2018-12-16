@@ -32,7 +32,9 @@ const reducer = handleActions(
     },
     [GET_FORECAST.SUCCESS]: (state: ForecastState, payload: Weather) => {
       state.loading = false;
-      state.weather[payload.city.name] = payload;
+      if (payload.city) {
+        state.weather[payload.city.name] = payload;
+      }
     }
   },
   STATE
