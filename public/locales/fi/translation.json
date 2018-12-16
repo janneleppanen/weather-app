@@ -4,6 +4,10 @@
     "remember": "Muista kohde"
   },
 
+  "head": {
+    "weatherFor": "Sää kohteelle"
+  },
+
   "main": {
     "title": "Etsi ennusteita"
   },
@@ -31,5 +35,14 @@
     "theme": "Ulkoasu",
     "light": "Vaalea",
     "dark": "Tumma"
+  },
+
+  "details": {
+    "temperature": "Lämpötila",
+    "humidity": "Ilman kosteus",
+    "windSpeed": "Tuulen voimakkuus",
+    "snow": "Lunta",
+    "rain": "Sadetta",
+    "clouds": "Pilvisyys"
   }
 }

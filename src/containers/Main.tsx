@@ -27,8 +27,8 @@ import { ReactComponent as MarkerSVG } from "../images/icons/marker.svg";
 
 const CurrentLocationButton = styled.button`
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 1px;
+  left: 1px;
   padding: 1rem 0.75rem;
   border: none;
   background: transparent;
@@ -69,7 +69,7 @@ interface State {
   location: string;
 }
 
-class App extends React.Component<Props & RouteProps, State> {
+class Main extends React.Component<Props & RouteProps, State> {
   state = {
     loading: true,
     location: ""
@@ -130,13 +130,19 @@ class App extends React.Component<Props & RouteProps, State> {
         <Container>
           <Helmet>
             {this.props.lastLocation ? (
-              <title>Weather for {this.props.lastLocation}</title>
+              <title>
+                {t("head.weatherFor")} {this.props.lastLocation}
+              </title>
             ) : (
               <title>{AppName}</title>
             )}
           </Helmet>
 
           <h1 className="screen-reader-text">{t("main.title")}</h1>
+
+          <CurrentLocationButton onClick={this.updateForecastByLocation}>
+            <MarkerIcon />
+          </CurrentLocationButton>
 
           <label className="screen-reader-text" htmlFor="search">
             {t("common.enterLocation")}
@@ -165,10 +171,6 @@ class App extends React.Component<Props & RouteProps, State> {
               return null;
             }}
           />
-
-          <CurrentLocationButton onClick={this.updateForecastByLocation}>
-            <MarkerIcon />
-          </CurrentLocationButton>
 
           {weather && weather.cod === "200" && <MainIcon icon={mainIcon} />}
 
@@ -241,4 +243,4 @@ export default compose(
     mapStateToProps,
     { getForecastRequest, addBookmark, removeBookmark, setLastLocation }
   )
-)(App);
+)(Main);
